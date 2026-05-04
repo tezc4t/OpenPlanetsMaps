@@ -386,7 +386,6 @@ header h1 {
 }
 
 #layer-home .desc-box {
-    white-space: nowrap;
     font-family: 'Space Mono', monospace;
     font-size: 0.85rem;
     color: var(--theme-color);
