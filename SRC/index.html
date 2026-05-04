@@ -6,43 +6,248 @@
     <title>OpenPlanetsMaps</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="theme-home">
     <div class="bg-animated"></div>
 
     <header>
         <div class="menu-icon" onclick="toggleSidebar()">☰</div>
-        <h1>Title</h1>
+        <h1>Open Planets Maps</h1>
         <button class="help-btn">?</button>
     </header>
 
     <nav id="sidebar" class="sidebar">
         <ul>
             <li onclick="showLayer('home')">Accueil</li>
-            <li onclick="showLayer('theme')">Thème</li>
+            <li onclick="showLayer('mercure')">Mercure</li>
+            <li onclick="showLayer('venus')">Vénus</li>
+            <li onclick="showLayer('terre')">Terre</li>
+            <li onclick="showLayer('mars')">Mars</li>
+            <li onclick="showLayer('jupiter')">Jupiter</li>
+            <li onclick="showLayer('saturne')">Saturne</li>
+            <li onclick="showLayer('uranus')">Uranus</li>
+            <li onclick="showLayer('neptune')">Neptune</li>
         </ul>
     </nav>
 
     <main id="content-area">
         <section id="layer-home" class="layer active">
-            <div class="main-img">IMG/LOGO</div>
+            <div class="main-img">
+                <iframe title="Solar System animation" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/b7c69a6b655b47c99f871d5ec5aee854/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
             <div class="flex-row">
-                <div class="box">jsp</div>
-                <div class="box">txt</div>
+                <div class="box">
+                    <h2>Exploration Spatiale</h2>
+                    <p>Naviguez à travers le système solaire et découvrez les caractéristiques uniques de chaque planète grâce à nos cartes interactives.</p>
+                </div>
+                <div class="box">
+                    <h2>Données Ouvertes</h2>
+                    <p>Accédez à une base de données topographiques issue des agences spatiales, centralisée dans un outil open source.</p>
+                </div>
             </div>
             <div class="ticker-wrap">
-                <div class="ticker">Texte qui défile vers la droite...</div>
+                <div class="ticker">Système Solaire - 8 Planètes - Cartographie Open Source - Données Topographiques - Exploration Interactive...</div>
             </div>
-            <div class="desc-box">TXT desc / Potentiellement un form</div>
+            <div class="desc-box">Prêt pour le lancement ? Ouvrez le menu latéral (☰) et sélectionnez une destination pour commencer votre voyage.</div>
         </section>
 
-        <section id="layer-theme" class="layer">
+        <section id="layer-mercure" class="layer">
             <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
-            <div class="main-img">IMG THEME (Ptet anim)</div>
-            <div class="desc-box">DESCR THEME</div>
-            <div class="ticker-wrap">
-                <div class="ticker">Autre texte défilant différent...</div>
+            <div class="main-img">
+                <iframe title="Mercury" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/0930a4f0405243f6a9f93a4da79c66b6/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
             </div>
-            <div class="table-container">Tableau dates & data</div>
+            <div class="desc-box">Mercure est la planète la plus proche du Soleil et la plus petite du système solaire. Sa surface est parsemée de cratères, ressemblant à celle de notre Lune, et elle subit des variations de température extrêmes.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance au Soleil : 58 millions de km &nbsp;&bull;&nbsp; Température : de -180°C à 430°C &nbsp;&bull;&nbsp; Superficie : 74,8 millions de km² &nbsp;&bull;&nbsp; Durée du jour : 59 jours terrestres</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-mercure">
+                        <tr><td colspan="3">En attente des données...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-venus" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
+            <div class="main-img">
+                <iframe title="Venus" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/d497ce25553447f3b7b679110c85cfa1/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Vénus est la deuxième planète du système solaire et la plus chaude. Son atmosphère très dense provoque un effet de serre extrême, et sa surface est masquée par d'épais nuages d'acide sulfurique.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance au Soleil : 108 millions de km &nbsp;&bull;&nbsp; Température moyenne : 462°C &nbsp;&bull;&nbsp; Superficie : 460 millions de km² &nbsp;&bull;&nbsp; Durée du jour : 243 jours terrestres</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-venus">
+                        <tr><td colspan="3">En attente des données...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-terre" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
+            <div class="main-img">
+                <iframe title="Earth : Planets / Solar System" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/cb636fdd7f124125a3b7d194da9942e1/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Notre planète natale, la Terre, est la troisième planète du système solaire et la seule connue pour abriter la vie. Elle se distingue par ses vastes océans d'eau liquide qui recouvrent plus de 70% de sa surface.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance au Soleil : 150 millions de km (1 UA) &nbsp;&bull;&nbsp; Température moyenne : 15°C &nbsp;&bull;&nbsp; Superficie : 510 millions de km² &nbsp;&bull;&nbsp; Satellites naturels : 1 (La Lune)</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-terre">
+                        <tr><td colspan="3">En attente des données...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-mars" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
+            <div class="main-img">
+                <iframe title="Mars: InSight Lander and Volcanic Regions" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/50bb6eb0d1104d43bf684d2b0f70de1d/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Surnommée la « planète rouge » en raison de l'oxyde de fer à sa surface, Mars possède des calottes polaires, le plus grand volcan du système solaire (Olympus Mons) et un immense canyon (Valles Marineris).</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance au Soleil : 227,9 millions de km &nbsp;&bull;&nbsp; Température moyenne : -63°C &nbsp;&bull;&nbsp; Superficie : 144,8 millions de km² &nbsp;&bull;&nbsp; Gravité : 3,72 m/s²</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-mars">
+                        <tr><td colspan="3">En attente des données...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-jupiter" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
+            <div class="main-img">
+                <iframe title="jupiter" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/c5275eb96af245e4a8453837ac728a62/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Jupiter est la plus grande planète de notre système solaire. Cette géante gazeuse est célèbre pour sa Grande Tache Rouge, une tempête anticyclonique gigantesque, et possède des dizaines de lunes fascinantes.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance au Soleil : 778 millions de km &nbsp;&bull;&nbsp; Température moyenne : -110°C &nbsp;&bull;&nbsp; Superficie : 61,4 milliards de km² &nbsp;&bull;&nbsp; Satellites naturels : 95 connus</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-jupiter">
+                        <tr><td colspan="3">En attente des données...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-saturne" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
+            <div class="main-img">
+                <iframe title="Saturn" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/c09a1970148c43ad99db134a9d6d00b5/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Reconnaissable entre toutes grâce à son spectaculaire système d'anneaux composés de particules de glace et de roche, Saturne est une vaste géante gazeuse aux vents extrêmement violents.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance au Soleil : 1,43 milliard de km &nbsp;&bull;&nbsp; Température moyenne : -140°C &nbsp;&bull;&nbsp; Superficie : 42,7 milliards de km² &nbsp;&bull;&nbsp; Satellites naturels : 146 connus</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-saturne">
+                        <tr><td colspan="3">En attente des données...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-uranus" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
+            <div class="main-img">
+                <iframe title="Uranus" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/0009a69dbace44608c0bd09af9ba20db/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Uranus est une géante de glaces dont l'axe de rotation est fortement incliné, ce qui donne l'impression qu'elle « roule » sur son orbite. Sa belle teinte cyan est due à la présence de méthane.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance au Soleil : 2,87 milliards de km &nbsp;&bull;&nbsp; Température moyenne : -195°C &nbsp;&bull;&nbsp; Superficie : 8,1 milliards de km² &nbsp;&bull;&nbsp; Durée de l'année : 84 ans terrestres</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-uranus">
+                        <tr><td colspan="3">En attente des données...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-neptune" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
+            <div class="main-img">
+                <iframe title="Neptune" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/2a6f9ccc5c724a709912774caa197b77/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">La planète la plus éloignée du Soleil est une autre géante de glaces, Neptune. Elle est connue pour sa couleur bleu azur profond et ses vents supersoniques, les plus rapides de tout le système solaire.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance au Soleil : 4,5 milliards de km &nbsp;&bull;&nbsp; Température moyenne : -200°C &nbsp;&bull;&nbsp; Superficie : 7,6 milliards de km² &nbsp;&bull;&nbsp; Vitesse des vents : jusqu'à 2 100 km/h</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-neptune">
+                        <tr><td colspan="3">En attente des données...</td></tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </main>
 
