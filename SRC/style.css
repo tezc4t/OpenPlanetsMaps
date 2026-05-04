@@ -179,7 +179,7 @@ header h1 {
 
 .data-table {
     width: 100%;
-    max-width: 900px;
+    max-width: 1300px;
     margin: 0 auto;
     border-collapse: collapse;
 }
@@ -193,22 +193,53 @@ header h1 {
     vertical-align: middle;
 }
 
+.col-desc {
+    width: 40%;
+    min-width: 300px;
+    text-align: justify !important;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    padding: 0.8rem !important;
+}
+
+.col-url {
+    width: 15%;
+    max-width: 350px;
+    word-wrap: break-word;
+    word-break: break-all;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
 .data-table th {
     font-weight: 600;
     background-color: rgba(150, 150, 150, 0.1);
 }
 
-.img-placeholder {
-    width: 100px;
-    height: 60px;
+.hidden-row {
+    display: none !important;
+}
+
+.show-more-btn {
+    display: inline-block;
+    margin: 1.5rem auto 0;
+    padding: 0.6rem 1.5rem;
+    background-color: rgba(150, 150, 150, 0.1);
+    color: inherit;
+    border: 1px solid currentColor;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    opacity: 0.85;
+}
+
+.show-more-btn:hover {
+    opacity: 1;
     background-color: rgba(150, 150, 150, 0.2);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    border: 1px dashed currentColor;
-    margin: 0 auto;
+    transform: translateY(2px);
 }
 
 .desc-box {
