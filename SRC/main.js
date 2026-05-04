@@ -6,12 +6,12 @@ function showLayer(layerId) {
     document.querySelectorAll('.layer').forEach(layer => {
         layer.classList.remove('active');
     });
-    
+
     document.getElementById('layer-' + layerId).classList.add('active');
-    
-    document.body.className = ''; 
+
+    document.body.className = '';
     document.body.classList.add('theme-' + layerId);
-    
+
     if (layerId !== 'home') {
         fetchData(layerId);
     }
@@ -19,22 +19,102 @@ function showLayer(layerId) {
     toggleSidebar();
 }
 
+const planetData = {};
+const planetCols = {};
+
+function wireSearch(planetId) {
+    const layer = document.getElementById('layer-' + planetId);
+    if (!layer) return;
+    const input = layer.querySelector('.search-bar input');
+    if (!input) return;
+
+    const fresh = input.cloneNode(true);
+    input.parentNode.replaceChild(fresh, input);
+
+    fresh.addEventListener('input', () => {
+        filterTable(planetId, fresh.value.trim());
+    });
+}
+
+function filterTable(planetId, query) {
+    const tbody = document.getElementById('tbody-' + planetId);
+    if (!tbody) return;
+
+    const rows   = Array.from(tbody.querySelectorAll('tr'));
+    const cols   = planetCols[planetId] || [];
+    const data   = planetData[planetId] || [];
+
+    const titleIndices = cols.reduce((acc, col, i) => {
+        const c = col.toLowerCase();
+        if (c === 'nom' || c === 'name' || c.includes('title') || c.includes('titre')) {
+            acc.push(i);
+        }
+        return acc;
+    }, []);
+
+    const searchIndices = titleIndices.length > 0
+        ? titleIndices
+        : cols.reduce((acc, col, i) => {
+            const c = col.toLowerCase();
+            if (!c.includes('url') && !c.includes('desc') && !c.includes('expl') && c !== 'image' && c !== 'img') {
+                acc.push(i);
+            }
+            return acc;
+        }, []);
+
+    const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+
+    const tableContainer = tbody.closest('.table-container');
+    const showMoreBtn    = tableContainer ? tableContainer.querySelector('.show-more-btn') : null;
+
+    if (tokens.length === 0) {
+        rows.forEach((tr, index) => {
+            tr.style.display = '';
+            if (data.length > 10) {
+                if (index >= 10) tr.classList.add('hidden-row');
+                else             tr.classList.remove('hidden-row');
+            }
+        });
+        if (showMoreBtn) showMoreBtn.style.display = '';
+        return;
+    }
+
+    if (showMoreBtn) showMoreBtn.style.display = 'none';
+
+    rows.forEach((tr, index) => {
+        const rowObj = data[index];
+        if (!rowObj) { tr.style.display = 'none'; return; }
+
+        const haystack = searchIndices
+            .map(i => String(rowObj[cols[i]] || '').toLowerCase())
+            .join(' ');
+
+        const matches = tokens.every(token => haystack.includes(token));
+
+        tr.classList.remove('hidden-row');
+        tr.style.display = matches ? '' : 'none';
+    });
+}
+
 async function fetchData(planetId) {
     const tbody = document.getElementById('tbody-' + planetId);
     if (!tbody) return;
 
-    if (tbody.getAttribute('data-loaded') === 'true') return;
+    if (tbody.getAttribute('data-loaded') === 'true') {
+        wireSearch(planetId);
+        return;
+    }
 
     tbody.innerHTML = '<tr><td colspan="3">Chargement des données depuis la BDD...</td></tr>';
 
     try {
         const response = await fetch(`api.php?planet=${planetId}`);
-        
+
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
             throw new Error(errorData.error || `Erreur HTTP: ${response.status}`);
         }
-        
+
         const data = await response.json();
 
         tbody.innerHTML = '';
@@ -45,26 +125,27 @@ async function fetchData(planetId) {
         }
 
         const columns = Object.keys(data[0]).filter(col => col.toLowerCase() !== 'copyright');
-        
+
+        planetData[planetId] = data;
+        planetCols[planetId] = columns;
+
         const thead = tbody.parentElement.querySelector('thead');
         thead.innerHTML = '<tr>' + columns.map(col => {
             const colLower = col.toLowerCase();
             const isDesc = colLower.includes('desc') || colLower.includes('expl');
-            const isUrl = colLower.includes('url') || colLower === 'image' || colLower === 'img';
-            
+            const isUrl  = colLower.includes('url')  || colLower === 'image' || colLower === 'img';
+
             let className = '';
-            if (isDesc) className = ' class="col-desc"';
+            if (isDesc)     className = ' class="col-desc"';
             else if (isUrl) className = ' class="col-url"';
             return `<th${className}>${col.toUpperCase()}</th>`;
         }).join('') + '</tr>';
 
         data.forEach((row, index) => {
             const tr = document.createElement('tr');
-            
-            if (index >= 10) {
-                tr.classList.add('hidden-row');
-            }
-            
+
+            if (index >= 10) tr.classList.add('hidden-row');
+
             let rowHtml = '';
             columns.forEach(col => {
                 const colLower = col.toLowerCase();
@@ -72,7 +153,7 @@ async function fetchData(planetId) {
                     const url = row[col];
                     if (url && url.trim() !== '') {
                         rowHtml += `<td class="col-url">
-                            <a href="${url}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline; font-weight: 500;">
+                            <a href="${url}" target="_blank" rel="noopener noreferrer">
                                 ${url}
                             </a>
                         </td>`;
@@ -82,19 +163,19 @@ async function fetchData(planetId) {
                 } else if (colLower.includes('desc') || colLower.includes('expl')) {
                     const text = row[col] || '';
                     let fontSizeStyle = '';
-                    if (text.length > 200) fontSizeStyle = ' font-size: 0.75rem;';
+                    if (text.length > 200)      fontSizeStyle = ' font-size: 0.75rem;';
                     else if (text.length > 100) fontSizeStyle = ' font-size: 0.85rem;';
                     rowHtml += `<td class="col-desc" style="${fontSizeStyle}">${text}</td>`;
                 } else {
                     rowHtml += `<td>${row[col]}</td>`;
                 }
             });
+
             tr.innerHTML = rowHtml;
             tbody.appendChild(tr);
         });
 
         const tableContainer = tbody.closest('.table-container');
-        
         const existingBtn = tableContainer.querySelector('.show-more-btn');
         if (existingBtn) existingBtn.remove();
 
@@ -110,6 +191,8 @@ async function fetchData(planetId) {
         }
 
         tbody.setAttribute('data-loaded', 'true');
+
+        wireSearch(planetId);
 
     } catch (error) {
         console.error("Erreur de connexion à la BDD :", error);
