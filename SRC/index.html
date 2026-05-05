@@ -18,6 +18,7 @@
     <nav id="sidebar" class="sidebar">
         <ul>
             <li onclick="showLayer('home')">Accueil</li>
+            <li class="menu-category">Planètes</li>
             <li onclick="showLayer('mercure')">Mercure</li>
             <li onclick="showLayer('venus')">Vénus</li>
             <li onclick="showLayer('terre')">Terre</li>
@@ -26,6 +27,11 @@
             <li onclick="showLayer('saturne')">Saturne</li>
             <li onclick="showLayer('uranus')">Uranus</li>
             <li onclick="showLayer('neptune')">Neptune</li>
+            <li class="menu-category">Astres</li>
+            <li onclick="showLayer('soleil')">Soleil</li>    
+            <li onclick="showLayer('lune')">Lune</li>
+            <li class="menu-category">Notions</li>
+            <li onclick="showLayer('Quizz')">Quizz</li>
         </ul>
     </nav>
 
@@ -247,6 +253,73 @@
                         <tr><td colspan="3">En attente des données...</td></tr>
                     </tbody>
                 </table>
+            </div>
+        </section>
+
+        <section id="layer-soleil" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
+            <div class="main-img">
+                <iframe title="Soleil" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/19ebc57385f543ad8856cb04c000bece/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Le Soleil est l'étoile au centre de notre système solaire. Il représente à lui seul environ 99,8 % de la masse du système solaire et fournit l'énergie nécessaire au maintien de la vie sur Terre.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Type : Naine jaune &nbsp;&bull;&nbsp; Température de surface : 5 500°C &nbsp;&bull;&nbsp; Distance à la Terre : 150 millions de km (1 UA) &nbsp;&bull;&nbsp; Âge : 4,6 milliards d'années</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-soleil">
+                        <tr><td colspan="3">En attente des données...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-lune" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
+            <div class="main-img">
+                <iframe title="Lune" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/78da6bf9c10444ce9cc8aa7d969ecfb4/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">La Lune est l'unique satellite naturel de la Terre. Elle est le cinquième plus grand satellite du système solaire et le seul astre non terrestre à avoir été visité par des êtres humains.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance à la Terre : 384 400 km &nbsp;&bull;&nbsp; Température : de -173°C à 127°C &nbsp;&bull;&nbsp; Gravité : 1,62 m/s² &nbsp;&bull;&nbsp; Durée de l'orbite : 27,3 jours</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-lune">
+                        <tr><td colspan="3">En attente des données...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-Quizz" class="layer">
+            <div class="desc-box">Testez vos connaissances sur le système solaire ! Répondez aux questions ci-dessous pour voir si vous êtes un véritable expert de l'espace.</div>
+            
+            <div class="daily-challenge-box">
+                <strong class="daily-challenge-title">◈ DÉFI QUOTIDIEN</strong>
+                <p class="daily-challenge-desc">Chaque jour à minuit, l'ordinateur de bord compile nos archives pour générer un nouveau Quizz unique de 10 questions. Entraînez-vous quotidiennement pour parfaire vos connaissances !</p>
+            </div>
+
+            <div id="quiz-container" class="box">
+                <h2 id="quiz-question">Chargement du Quizz...</h2>
+                <div id="quiz-options">
+                </div>
+                <p id="quiz-score"></p>
+                <button id="quiz-restart-btn" onclick="initQuiz()">Recommencer le Quizz</button>
             </div>
         </section>
     </main>

@@ -23,6 +23,54 @@ try {
         'neptune' => 'NEPTUNE'
     ];
     
+    if ($planetId === 'quizz') {
+        $queries = [];
+        $seed = date('Ymd');
+        foreach ($tablesAutorisees as $key => $table) {
+            $queries[] = "(SELECT explanation, planete_nom FROM $table WHERE explanation IS NOT NULL AND explanation != '' ORDER BY RAND($seed) LIMIT 3)";
+        }
+        $unionQuery = implode(' UNION ALL ', $queries);
+        
+        $stmt = $pdo->prepare("SELECT * FROM ($unionQuery) as all_data ORDER BY RAND($seed) LIMIT 10");
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $questions = [];
+        $allPlanets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
+        
+        $traductions = [
+            'Mercury' => 'Mercure', 'Venus' => 'Vénus', 'Earth' => 'Terre', 
+            'Mars' => 'Mars', 'Jupiter' => 'Jupiter', 'Saturn' => 'Saturne', 
+            'Uranus' => 'Uranus', 'Neptune' => 'Neptune'
+        ];
+        
+        foreach ($results as $row) {
+            $correctEn = $row['planete_nom'];
+            $correctFr = isset($traductions[$correctEn]) ? $traductions[$correctEn] : $correctEn;
+            
+            $optionsEn = [$correctEn];
+            $others = array_diff($allPlanets, [$correctEn]);
+            shuffle($others);
+            $optionsEn = array_merge($optionsEn, array_slice($others, 0, 3));
+            
+            $optionsFr = array_map(function($p) use ($traductions) {
+                return isset($traductions[$p]) ? $traductions[$p] : $p;
+            }, $optionsEn);
+            shuffle($optionsFr); 
+            
+            $text = substr($row['explanation'], 0, 200) . '...';
+            
+            $questions[] = [
+                'q' => "De quel astre parle cette description ? « " . $text . " »",
+                'options' => $optionsFr,
+                'a' => $correctFr
+            ];
+        }
+        
+        echo json_encode($questions);
+        exit;
+    }
+    
     if (!array_key_exists($planetId, $tablesAutorisees)) {
         echo json_encode([]);
         exit;

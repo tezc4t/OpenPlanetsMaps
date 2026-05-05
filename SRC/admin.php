@@ -43,7 +43,7 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
         
         if (array_key_exists($planete, $tablesAutorisees)) {
             $nomTable = $tablesAutorisees[$planete];
-            $stmt = $pdo->prepare("INSERT INTO $nomTable (nom, date, url, description) VALUES (?, ?, ?, ?)");
+            $stmt = $pdo->prepare("INSERT INTO $nomTable (title, date, url, explanation) VALUES (?, ?, ?, ?)");
             $stmt->execute([$nom, $date, $url, $description]);
             
             $message = "<p style='color: #4ade80; text-align: center; margin-bottom: 1rem;'>Ligne ajoutée avec succès dans la table $nomTable !</p>";

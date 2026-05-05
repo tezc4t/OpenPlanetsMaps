@@ -12,7 +12,9 @@ function showLayer(layerId) {
     document.body.className = '';
     document.body.classList.add('theme-' + layerId);
 
-    if (layerId !== 'home') {
+    if (layerId === 'Quizz') {
+        initQuiz();
+    } else if (layerId !== 'home') {
         fetchData(layerId);
     }
 
@@ -198,4 +200,102 @@ async function fetchData(planetId) {
         console.error("Erreur de connexion à la BDD :", error);
         tbody.innerHTML = `<tr><td colspan="3" style="color: #ff4444;">Erreur technique : ${error.message}</td></tr>`;
     }
+}
+
+let quizQuestions = [];
+let currentQuizIndex = 0;
+let quizScore = 0;
+
+async function initQuiz() {
+    currentQuizIndex = 0;
+    quizScore = 0;
+    document.getElementById('quiz-restart-btn').style.display = 'none';
+    document.getElementById('quiz-score').textContent = '';
+
+    if (quizQuestions.length === 0) {
+        document.getElementById('quiz-question').textContent = "Chargement du Quizz du jour...";
+        document.getElementById('quiz-options').innerHTML = '';
+        
+        try {
+            const response = await fetch(`api.php?planet=quizz`);
+            if (!response.ok) {
+                let errMsg = "Erreur réseau";
+                try {
+                    const errData = await response.json();
+                    if (errData.error) errMsg = errData.error;
+                } catch (e) {}
+                throw new Error(errMsg);
+            }
+            quizQuestions = await response.json();
+
+            if (quizQuestions.length === 0) {
+                document.getElementById('quiz-question').textContent = "Pas assez de données dans la base pour générer un quizz.";
+                return;
+            }
+        } catch (error) {
+            console.error("Erreur Quizz:", error);
+            document.getElementById('quiz-question').textContent = "Erreur : " + error.message;
+            return;
+        }
+    }
+
+    showQuizQuestion();
+}
+
+function showQuizQuestion() {
+    if (currentQuizIndex >= quizQuestions.length) {
+        document.getElementById('quiz-question').textContent = "Quizz du jour terminé !";
+        document.getElementById('quiz-options').innerHTML = "";
+        document.getElementById('quiz-score').textContent = `Votre score : ${quizScore} / ${quizQuestions.length}`;
+        document.getElementById('quiz-restart-btn').style.display = 'inline-block';
+        return;
+    }
+
+    const qObj = quizQuestions[currentQuizIndex];
+    document.getElementById('quiz-question').innerText = `Question ${currentQuizIndex + 1}/${quizQuestions.length} :\n\n${qObj.q}`;
+    
+    const optionsContainer = document.getElementById('quiz-options');
+    optionsContainer.innerHTML = '';
+    
+    qObj.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-btn';
+        btn.textContent = opt;
+        btn.onclick = () => checkAnswer(opt, qObj.a, btn);
+        optionsContainer.appendChild(btn);
+    });
+}
+
+function checkAnswer(selected, correct, btn) {
+    const optionsContainer = document.getElementById('quiz-options');
+    const buttons = optionsContainer.querySelectorAll('.quiz-btn');
+    
+    buttons.forEach(b => {
+        b.disabled = true;
+        b.style.cursor = 'default';
+    });
+
+    if (selected === correct) {
+        btn.style.backgroundColor = 'rgba(74, 222, 128, 0.4)';
+        btn.style.borderColor = '#4ade80';
+        btn.style.color = '#fff';
+        quizScore++;
+    } else {
+        btn.style.backgroundColor = 'rgba(248, 113, 113, 0.4)';
+        btn.style.borderColor = '#f87171';
+        btn.style.color = '#fff';
+        
+        buttons.forEach(b => {
+            if (b.textContent === correct) {
+                b.style.backgroundColor = 'rgba(74, 222, 128, 0.4)';
+                b.style.borderColor = '#4ade80';
+                b.style.color = '#fff';
+            }
+        });
+    }
+    
+    setTimeout(() => {
+        currentQuizIndex++;
+        showQuizQuestion();
+    }, 1500);
 }
