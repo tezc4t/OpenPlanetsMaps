@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         header('Location: admin.php');
         exit;
     } else {
-        $error = 'Identifiants incorrects.';
+        $error = 'Incorrect credentials.';
     }
 }
 
@@ -35,29 +35,29 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
         $url = $_POST['url'];
         $description = $_POST['description'];
         
-        $tablesAutorisees = [
-            'mercure' => 'MERCURY', 'venus' => 'VENUS', 'terre' => 'EARTH', 
-            'mars' => 'MARS', 'jupiter' => 'JUPITER', 'saturne' => 'SATURN', 
+        $allowedTables = [
+            'mercury' => 'MERCURY', 'venus' => 'VENUS', 'earth' => 'EARTH', 
+            'mars' => 'MARS', 'jupiter' => 'JUPITER', 'saturn' => 'SATURN', 
             'uranus' => 'URANUS', 'neptune' => 'NEPTUNE'
         ];
         
-        if (array_key_exists($planete, $tablesAutorisees)) {
-            $nomTable = $tablesAutorisees[$planete];
+        if (array_key_exists($planete, $allowedTables)) {
+            $nomTable = $allowedTables[$planete];
             $stmt = $pdo->prepare("INSERT INTO $nomTable (title, date, url, explanation) VALUES (?, ?, ?, ?)");
             $stmt->execute([$nom, $date, $url, $description]);
             
-            $message = "<p style='color: #4ade80; text-align: center; margin-bottom: 1rem;'>Ligne ajoutée avec succès dans la table $nomTable !</p>";
+            $message = "<p style='color: #4ade80; text-align: center; margin-bottom: 1rem;'>Row successfully added to the $nomTable table!</p>";
         }
     } catch (PDOException $e) {
-        $message = "<p style='color: #f87171; text-align: center; margin-bottom: 1rem;'>Erreur SQL : " . $e->getMessage() . "</p>";
+        $message = "<p style='color: #f87171; text-align: center; margin-bottom: 1rem;'>SQL Error: " . $e->getMessage() . "</p>";
     }
 }
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Panel Admin - OpenPlanetsMaps</title>
+    <title>Admin Panel - OpenPlanetsMaps</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body { background-color: #0f172a; color: #e0e0e0; display: flex; justify-content: center; align-items: center; padding: 2rem; min-height: 100vh; }
@@ -76,32 +76,32 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
 <body>
     <div class="admin-box">
         <?php if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true): ?>
-            <h1>Connexion Admin</h1>
+            <h1>Admin Login</h1>
             <?php if ($error): ?><p style="color: #f87171; text-align: center; margin-bottom: 1rem;"><?= $error ?></p><?php endif; ?>
             <form method="POST">
                 <input type="hidden" name="action" value="login">
-                <div class="form-group"><label>Utilisateur</label><input type="text" name="username" required></div>
-                <div class="form-group"><label>Mot de passe</label><input type="password" name="password" required></div>
-                <button type="submit" class="btn-submit">Se connecter</button>
+                <div class="form-group"><label>Username</label><input type="text" name="username" required></div>
+                <div class="form-group"><label>Password</label><input type="password" name="password" required></div>
+                <button type="submit" class="btn-submit">Login</button>
             </form>
-            <div class="links"><a href="index.html">← Retour au site</a></div>
+            <div class="links"><a href="index.html">← Back to site</a></div>
         <?php else: ?>
-            <h1>Ajouter une ligne</h1>
+            <h1>Add a row</h1>
             <?= $message ?>
             <form method="POST">
                 <input type="hidden" name="action" value="add">
-                <div class="form-group"><label>Planète cible</label><select name="planete" required>
-                    <option value="mercure">Mercure</option><option value="venus">Vénus</option><option value="terre">Terre</option>
-                    <option value="mars">Mars</option><option value="jupiter">Jupiter</option><option value="saturne">Saturne</option>
+                <div class="form-group"><label>Target planet</label><select name="planete" required>
+                    <option value="mercury">Mercury</option><option value="venus">Venus</option><option value="earth">Earth</option>
+                    <option value="mars">Mars</option><option value="jupiter">Jupiter</option><option value="saturn">Saturn</option>
                     <option value="uranus">Uranus</option><option value="neptune">Neptune</option>
                 </select></div>
-                <div class="form-group"><label>Nom de la mission / de l'élément</label><input type="text" name="nom" required></div>
-                <div class="form-group"><label>Date (ex: 24/01/1986)</label><input type="text" name="date"></div>
-                <div class="form-group"><label>URL (Lien vers une image ou un site)</label><input type="url" name="url"></div>
-                <div class="form-group"><label>Description / Explication</label><textarea name="description" rows="4"></textarea></div>
-                <button type="submit" class="btn-submit">Ajouter aux données</button>
+                <div class="form-group"><label>Mission / Element name</label><input type="text" name="nom" required></div>
+                <div class="form-group"><label>Date (e.g., 24/01/1986)</label><input type="text" name="date"></div>
+                <div class="form-group"><label>URL (Link to an image or site)</label><input type="url" name="url"></div>
+                <div class="form-group"><label>Description / Explanation</label><textarea name="description" rows="4"></textarea></div>
+                <button type="submit" class="btn-submit">Add to data</button>
             </form>
-            <div class="links"><a href="admin.php?logout=1" style="color: #f87171;">Se déconnecter</a><a href="index.html">← Retour au site</a></div>
+            <div class="links"><a href="admin.php?logout=1" style="color: #f87171;">Logout</a><a href="index.html">← Back to site</a></div>
         <?php endif; ?>
     </div>
 </body>
