@@ -259,7 +259,10 @@
         <section id="layer-soleil" class="layer">
             <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
             <div class="main-img">
-                <iframe title="Soleil" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/19ebc57385f543ad8856cb04c000bece/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+                <div class="sketchfab-embed-wrapper">
+                    <iframe title="Photorealistic Sun" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/7556485516804d0db3960b834e4b3f98/embed"> </iframe>
+                    <p> <a href="https://sketchfab.com/3d-models/photorealistic-sun-7556485516804d0db3960b834e4b3f98?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=7556485516804d0db3960b834e4b3f98" target="_blank" rel="nofollow"> Photorealistic Sun </a> by <a href="https://sketchfab.com/cesar_salcedo?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=7556485516804d0db3960b834e4b3f98" target="_blank" rel="nofollow"> Cesar Salcedo CG </a> on <a href="https://sketchfab.com?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=7556485516804d0db3960b834e4b3f98" target="_blank" rel="nofollow">Sketchfab</a></p>
+                </div>
             </div>
             <div class="desc-box">Le Soleil est l'étoile au centre de notre système solaire. Il représente à lui seul environ 99,8 % de la masse du système solaire et fournit l'énergie nécessaire au maintien de la vie sur Terre.</div>
             <div class="ticker-wrap">
@@ -284,7 +287,10 @@
         <section id="layer-lune" class="layer">
             <div class="search-bar"><input type="text" placeholder="Recherche multi-critères..."></div>
             <div class="main-img">
-                <iframe title="Lune" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/78da6bf9c10444ce9cc8aa7d969ecfb4/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+                <div class="sketchfab-embed-wrapper">
+                    <iframe title="Moon" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/870de693475d436c8e925ab0bcda4ca4/embed"> </iframe>
+                    <p> <a href="https://sketchfab.com/3d-models/moon-870de693475d436c8e925ab0bcda4ca4?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=870de693475d436c8e925ab0bcda4ca4" target="_blank" rel="nofollow"> Moon </a> by <a href="https://sketchfab.com/miekeroth?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=870de693475d436c8e925ab0bcda4ca4" target="_blank" rel="nofollow"> Mieke Roth </a> on <a href="https://sketchfab.com?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=870de693475d436c8e925ab0bcda4ca4" target="_blank" rel="nofollow">Sketchfab</a></p>
+                </div>
             </div>
             <div class="desc-box">La Lune est l'unique satellite naturel de la Terre. Elle est le cinquième plus grand satellite du système solaire et le seul astre non terrestre à avoir été visité par des êtres humains.</div>
             <div class="ticker-wrap">
@@ -316,7 +322,11 @@
 
             <div id="quiz-container" class="box">
                 <h2 id="quiz-question">Chargement du Quizz...</h2>
-                <div id="quiz-options">
+                <div id="quiz-options"></div>
+                <div id="quiz-img-preview">
+                    <div class="quiz-img-label">◈ SOURCE — IMAGE DE LA MISSION</div>
+                    <img src="" alt="" />
+                    <div class="quiz-img-caption"></div>
                 </div>
                 <p id="quiz-score"></p>
                 <button id="quiz-restart-btn" onclick="initQuiz()">Recommencer le Quizz</button>
@@ -324,9 +334,57 @@
         </section>
     </main>
 
-    <footer class="site-footer">
-        &copy; 2026 OpenPlanetsMaps. Libre de droits.
+    <footer class="site-footer" onclick="openCredits()" title="Crédits & à propos">
+        &copy; 2026 OpenPlanetsMaps. Libre de droits. <span class="footer-credits-hint">— Crédits ↗</span>
     </footer>
+
+    <!-- Overlay crédits -->
+    <div id="credits-overlay"></div>
+    <div id="credits-panel">
+        <button class="credits-close" onclick="closeCredits()">✕</button>
+        <div class="credits-header">
+            <span class="credits-tag">◈ SYSTÈME / À PROPOS</span>
+            <h2 class="credits-title">OpenPlanetsMaps</h2>
+            <p class="credits-version">v1.0 — 2026</p>
+        </div>
+        <div class="credits-body">
+            <div class="credits-section">
+                <h3>Projet</h3>
+                <p>OpenPlanetsMaps est un outil open source de cartographie interactive du système solaire. Les données topographiques proviennent des principales agences spatiales mondiales.</p>
+            </div>
+            <div class="credits-section">
+                <h3>Données & Sources</h3>
+                <ul>
+                    <li><span>NASA</span> — National Aeronautics and Space Administration</li>
+                    <li><span>ESA</span> — European Space Agency</li>
+                    <li><span>JAXA</span> — Japan Aerospace Exploration Agency</li>
+                    <li><span>USGS</span> — Planetary Science Data</li>
+                </ul>
+            </div>
+            <div class="credits-section">
+                <h3>Modèles 3D</h3>
+                <ul>
+                    <li><span>Sketchfab</span> — Hébergement & rendu des modèles interactifs</li>
+                    <li>Modèles sous licences Creative Commons</li>
+                </ul>
+            </div>
+            <div class="credits-section">
+                <h3>Technologies</h3>
+                <ul>
+                    <li><span>HTML / CSS / JS</span> — Frontend</li>
+                    <li><span>PHP + MySQL</span> — Backend & base de données</li>
+                    <li><span>Orbitron, Space Grotesk, Space Mono</span> — Google Fonts</li>
+                </ul>
+            </div>
+            <div class="credits-section">
+                <h3>Licence</h3>
+                <p>Ce projet est distribué librement. Les données scientifiques restent la propriété de leurs organismes respectifs.</p>
+            </div>
+        </div>
+        <div class="credits-footer">
+            <span>◈ OpenPlanetsMaps — Libre de droits — 2026</span>
+        </div>
+    </div>
 
     <script src="main.js"></script>
 </body>

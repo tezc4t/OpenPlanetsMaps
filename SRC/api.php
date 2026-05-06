@@ -27,7 +27,7 @@ try {
         $queries = [];
         $seed = date('Ymd');
         foreach ($tablesAutorisees as $key => $table) {
-            $queries[] = "(SELECT explanation, planete_nom FROM $table WHERE explanation IS NOT NULL AND explanation != '' ORDER BY RAND($seed) LIMIT 3)";
+            $queries[] = "(SELECT explanation, planete_nom, url FROM $table WHERE explanation IS NOT NULL AND explanation != '' ORDER BY RAND($seed) LIMIT 3)";
         }
         $unionQuery = implode(' UNION ALL ', $queries);
         
@@ -61,9 +61,10 @@ try {
             $text = substr($row['explanation'], 0, 200) . '...';
             
             $questions[] = [
-                'q' => "De quel astre parle cette description ? « " . $text . " »",
+                'q'       => "De quel astre parle cette description ? « " . $text . " »",
                 'options' => $optionsFr,
-                'a' => $correctFr
+                'a'       => $correctFr,
+                'img'     => isset($row['url']) ? $row['url'] : ''
             ];
         }
         
