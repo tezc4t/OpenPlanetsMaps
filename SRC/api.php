@@ -12,21 +12,21 @@ try {
     
     $planetId = isset($_GET['planet']) ? $_GET['planet'] : '';
     
-    $tablesAutorisees = [
-        'mercure' => 'MERCURY',
+    $allowedTables = [
+        'mercury' => 'MERCURY',
         'venus'   => 'VENUS',
-        'terre'   => 'EARTH',
+        'earth'   => 'EARTH',
         'mars'    => 'MARS',
         'jupiter' => 'JUPITER',
-        'saturne' => 'SATURN',
+        'saturn'  => 'SATURN',
         'uranus'  => 'URANUS',
         'neptune' => 'NEPTUNE'
     ];
     
-    if ($planetId === 'quizz') {
+    if ($planetId === 'quiz') {
         $queries = [];
         $seed = date('Ymd');
-        foreach ($tablesAutorisees as $key => $table) {
+        foreach ($allowedTables as $key => $table) {
             $queries[] = "(SELECT explanation, planete_nom, url FROM $table WHERE explanation IS NOT NULL AND explanation != '' ORDER BY RAND($seed) LIMIT 3)";
         }
         $unionQuery = implode(' UNION ALL ', $queries);
@@ -38,32 +38,21 @@ try {
         $questions = [];
         $allPlanets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
         
-        $traductions = [
-            'Mercury' => 'Mercure', 'Venus' => 'Vénus', 'Earth' => 'Terre', 
-            'Mars' => 'Mars', 'Jupiter' => 'Jupiter', 'Saturn' => 'Saturne', 
-            'Uranus' => 'Uranus', 'Neptune' => 'Neptune'
-        ];
-        
         foreach ($results as $row) {
             $correctEn = $row['planete_nom'];
-            $correctFr = isset($traductions[$correctEn]) ? $traductions[$correctEn] : $correctEn;
             
             $optionsEn = [$correctEn];
             $others = array_diff($allPlanets, [$correctEn]);
             shuffle($others);
             $optionsEn = array_merge($optionsEn, array_slice($others, 0, 3));
-            
-            $optionsFr = array_map(function($p) use ($traductions) {
-                return isset($traductions[$p]) ? $traductions[$p] : $p;
-            }, $optionsEn);
-            shuffle($optionsFr); 
+            shuffle($optionsEn); 
             
             $text = substr($row['explanation'], 0, 200) . '...';
             
             $questions[] = [
-                'q'       => "De quel astre parle cette description ? « " . $text . " »",
-                'options' => $optionsFr,
-                'a'       => $correctFr,
+                'q'       => "Which celestial body does this description refer to? « " . $text . " »",
+                'options' => $optionsEn,
+                'a'       => $correctEn,
                 'img'     => isset($row['url']) ? $row['url'] : ''
             ];
         }
@@ -72,18 +61,18 @@ try {
         exit;
     }
     
-    if (!array_key_exists($planetId, $tablesAutorisees)) {
+    if (!array_key_exists($planetId, $allowedTables)) {
         echo json_encode([]);
         exit;
     }
     
-    $nomTable = $tablesAutorisees[$planetId];
-    $stmt = $pdo->prepare("SELECT * FROM $nomTable");
+    $tableName = $allowedTables[$planetId];
+    $stmt = $pdo->prepare("SELECT * FROM $tableName");
     $stmt->execute();
     
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($data);
 } catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(['error' => 'Erreur de base de données : ' . $e->getMessage()]);
+    echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
 }

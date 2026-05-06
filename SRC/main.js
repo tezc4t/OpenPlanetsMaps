@@ -12,7 +12,7 @@ function showLayer(layerId) {
     document.body.className = '';
     document.body.classList.add('theme-' + layerId);
 
-    if (layerId === 'Quizz') {
+    if (layerId === 'Quiz') {
         initQuiz();
     } else if (layerId !== 'home') {
         fetchData(layerId);
@@ -48,7 +48,7 @@ function filterTable(planetId, query) {
 
     const titleIndices = cols.reduce((acc, col, i) => {
         const c = col.toLowerCase();
-        if (c === 'nom' || c === 'name' || c.includes('title') || c.includes('titre')) {
+        if (c === 'name' || c.includes('title')) {
             acc.push(i);
         }
         return acc;
@@ -107,14 +107,14 @@ async function fetchData(planetId) {
         return;
     }
 
-    tbody.innerHTML = '<tr><td colspan="3">Chargement des données depuis la BDD...</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="3">Loading data from the database...</td></tr>';
 
     try {
         const response = await fetch(`api.php?planet=${planetId}`);
 
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.error || `Erreur HTTP: ${response.status}`);
+            throw new Error(errorData.error || `HTTP Error: ${response.status}`);
         }
 
         const data = await response.json();
@@ -122,7 +122,7 @@ async function fetchData(planetId) {
         tbody.innerHTML = '';
 
         if (data.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="3">Aucune donnée disponible pour le moment.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="3">No data available at the moment.</td></tr>';
             return;
         }
 
@@ -183,7 +183,7 @@ async function fetchData(planetId) {
 
         if (data.length > 10) {
             const btn = document.createElement('button');
-            btn.innerHTML = 'Voir la suite ⬇';
+            btn.innerHTML = 'Show more ⬇';
             btn.className = 'show-more-btn';
             btn.onclick = () => {
                 tbody.querySelectorAll('.hidden-row').forEach(row => row.classList.remove('hidden-row'));
@@ -197,8 +197,8 @@ async function fetchData(planetId) {
         wireSearch(planetId);
 
     } catch (error) {
-        console.error("Erreur de connexion à la BDD :", error);
-        tbody.innerHTML = `<tr><td colspan="3" style="color: #ff4444;">Erreur technique : ${error.message}</td></tr>`;
+        console.error("Database connection error:", error);
+        tbody.innerHTML = `<tr><td colspan="3" style="color: #ff4444;">Technical error: ${error.message}</td></tr>`;
     }
 }
 
@@ -213,13 +213,13 @@ async function initQuiz() {
     document.getElementById('quiz-score').textContent = '';
 
     if (quizQuestions.length === 0) {
-        document.getElementById('quiz-question').textContent = "Chargement du Quizz du jour...";
+        document.getElementById('quiz-question').textContent = "Loading today's Quiz...";
         document.getElementById('quiz-options').innerHTML = '';
         
         try {
-            const response = await fetch(`api.php?planet=quizz`);
+            const response = await fetch(`api.php?planet=quiz`);
             if (!response.ok) {
-                let errMsg = "Erreur réseau";
+                let errMsg = "Network error";
                 try {
                     const errData = await response.json();
                     if (errData.error) errMsg = errData.error;
@@ -229,12 +229,12 @@ async function initQuiz() {
             quizQuestions = await response.json();
 
             if (quizQuestions.length === 0) {
-                document.getElementById('quiz-question').textContent = "Pas assez de données dans la base pour générer un quizz.";
+                document.getElementById('quiz-question').textContent = "Not enough data in the database to generate a quiz.";
                 return;
             }
         } catch (error) {
-            console.error("Erreur Quizz:", error);
-            document.getElementById('quiz-question').textContent = "Erreur : " + error.message;
+            console.error("Quiz Error:", error);
+            document.getElementById('quiz-question').textContent = "Error: " + error.message;
             return;
         }
     }
@@ -246,16 +246,16 @@ function showQuizQuestion() {
     const preview = document.getElementById('quiz-img-preview');
 
     if (currentQuizIndex >= quizQuestions.length) {
-        document.getElementById('quiz-question').textContent = "Quizz du jour terminé !";
+        document.getElementById('quiz-question').textContent = "Today's Quiz finished!";
         document.getElementById('quiz-options').innerHTML = "";
-        document.getElementById('quiz-score').textContent = `Votre score : ${quizScore} / ${quizQuestions.length}`;
+        document.getElementById('quiz-score').textContent = `Your score: ${quizScore} / ${quizQuestions.length}`;
         document.getElementById('quiz-restart-btn').style.display = 'inline-block';
         if (preview) preview.classList.remove('visible');
         return;
     }
 
     const qObj = quizQuestions[currentQuizIndex];
-    document.getElementById('quiz-question').innerText = `Question ${currentQuizIndex + 1}/${quizQuestions.length} :\n\n${qObj.q}`;
+    document.getElementById('quiz-question').innerText = `Question ${currentQuizIndex + 1}/${quizQuestions.length}:\n\n${qObj.q}`;
 
     const optionsContainer = document.getElementById('quiz-options');
     optionsContainer.innerHTML = '';
@@ -296,7 +296,7 @@ function showQuizQuestion() {
                 } else {
                     if (oldImg) {
                         oldImg.src = url;
-                        oldImg.alt = 'Image associée à la question';
+                    oldImg.alt = 'Image associated with the question';
                         oldImg.style.display = 'block';
                     }
                     if (oldVid) oldVid.style.display = 'none';

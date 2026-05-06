@@ -9,17 +9,17 @@
     --border: rgba(79,142,255,.15);
 }
 body.theme-home    { --theme-color:#4f8eff; --theme-glow:rgba(79,142,255,.4);   --bg-deep:#020408; --bg-mid:#060d18; }
-body.theme-mercure { --theme-color:#c0a080; --theme-glow:rgba(192,160,128,.4);  --bg-deep:#0c0906; --bg-mid:#1a1008; }
+body.theme-mercury { --theme-color:#c0a080; --theme-glow:rgba(192,160,128,.4);  --bg-deep:#0c0906; --bg-mid:#1a1008; }
 body.theme-venus   { --theme-color:#ff9230; --theme-glow:rgba(255,146,48,.4);   --bg-deep:#0d0600; --bg-mid:#1e0e00; }
-body.theme-terre   { --theme-color:#00cfff; --theme-glow:rgba(0,207,255,.4);    --bg-deep:#010b10; --bg-mid:#031520; }
+body.theme-earth   { --theme-color:#00cfff; --theme-glow:rgba(0,207,255,.4);    --bg-deep:#010b10; --bg-mid:#031520; }
 body.theme-mars    { --theme-color:#ff5040; --theme-glow:rgba(255,80,64,.4);    --bg-deep:#0d0200; --bg-mid:#1e0600; }
 body.theme-jupiter { --theme-color:#ffb347; --theme-glow:rgba(255,179,71,.4);   --bg-deep:#0d0800; --bg-mid:#1e1200; }
-body.theme-saturne { --theme-color:#f5d060; --theme-glow:rgba(245,208,96,.4);   --bg-deep:#0c0900; --bg-mid:#1c1500; }
+body.theme-saturn  { --theme-color:#f5d060; --theme-glow:rgba(245,208,96,.4);   --bg-deep:#0c0900; --bg-mid:#1c1500; }
 body.theme-uranus  { --theme-color:#40e8d0; --theme-glow:rgba(64,232,208,.4);   --bg-deep:#000c0b; --bg-mid:#001a18; }
 body.theme-neptune { --theme-color:#2060ff; --theme-glow:rgba(32,96,255,.4);    --bg-deep:#000208; --bg-mid:#000510; }
-body.theme-soleil  { --theme-color:#ffcc44; --theme-glow:rgba(255,180,40,.55);  --theme-subtle:rgba(255,180,40,.09);  --bg-deep:#0d0500; --bg-mid:#200c00; --border:rgba(255,180,40,.2);  --text-primary:#fff5dc; --text-secondary:#c4923a; --text-muted:#6b4010; }
-body.theme-lune    { --theme-color:#c8cfe8; --theme-glow:rgba(200,207,232,.35); --theme-subtle:rgba(200,207,232,.06); --bg-deep:#060608; --bg-mid:#0e0f14; --border:rgba(200,207,232,.12); --text-primary:#dde2f0; --text-secondary:#7e8ba8; --text-muted:#3c4258; }
-body.theme-Quizz   { --theme-color:#7eb8f7; --theme-glow:rgba(126,184,247,.35); --theme-subtle:rgba(126,184,247,.07); --bg-deep:#020510; --bg-mid:#060e24; --border:rgba(126,184,247,.13); --text-primary:#ddeeff; --text-secondary:#6a90b8; --text-muted:#2e4a6a; }
+body.theme-sun     { --theme-color:#ffcc44; --theme-glow:rgba(255,180,40,.55);  --theme-subtle:rgba(255,180,40,.09);  --bg-deep:#0d0500; --bg-mid:#200c00; --border:rgba(255,180,40,.2);  --text-primary:#fff5dc; --text-secondary:#c4923a; --text-muted:#6b4010; }
+body.theme-moon    { --theme-color:#c8cfe8; --theme-glow:rgba(200,207,232,.35); --theme-subtle:rgba(200,207,232,.06); --bg-deep:#060608; --bg-mid:#0e0f14; --border:rgba(200,207,232,.12); --text-primary:#dde2f0; --text-secondary:#7e8ba8; --text-muted:#3c4258; }
+body.theme-Quiz    { --theme-color:#7eb8f7; --theme-glow:rgba(126,184,247,.35); --theme-subtle:rgba(126,184,247,.07); --bg-deep:#020510; --bg-mid:#060e24; --border:rgba(126,184,247,.13); --text-primary:#ddeeff; --text-secondary:#6a90b8; --text-muted:#2e4a6a; }
 
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
 
@@ -76,12 +76,12 @@ body::before {
         radial-gradient(ellipse 25% 35% at 85% 75%, var(--theme-glow), transparent);
     transition:background 1s ease;
 }
-body.theme-soleil::before {
+body.theme-sun::before {
     background:
         radial-gradient(ellipse 50% 35% at 80% 15%,rgba(255,150,20,.3),transparent),
         radial-gradient(ellipse 35% 50% at 10% 80%,rgba(255,100,0,.2),transparent);
 }
-body.theme-lune::before {
+body.theme-moon::before {
     background:
         radial-gradient(ellipse 45% 30% at 85% 10%,rgba(200,207,232,.18),transparent),
         radial-gradient(ellipse 30% 45% at 5% 90%,rgba(150,160,200,.12),transparent);
