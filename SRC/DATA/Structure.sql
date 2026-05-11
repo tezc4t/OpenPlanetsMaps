@@ -104,14 +104,16 @@ CREATE TABLE `MERCURY` (
 --
 
 CREATE TABLE `MOON` (
-  `date` date NOT NULL,
-  `explanation` text NOT NULL,
+  `id` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  `explanation` text DEFAULT NULL,
   `hdurl` varchar(255) DEFAULT NULL,
   `media_type` varchar(50) DEFAULT NULL,
   `service_version` varchar(10) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
-  `copyright` varchar(255) DEFAULT NULL
+  `copyright` varchar(255) DEFAULT NULL,
+  `planete_nom` varchar(20) DEFAULT 'Moon'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -159,14 +161,16 @@ CREATE TABLE `SATURN` (
 --
 
 CREATE TABLE `SUN` (
-  `date` date NOT NULL,
-  `explanation` text NOT NULL,
+  `id` int(11) NOT NULL,
+  `date` date DEFAULT NULL,
+  `explanation` text DEFAULT NULL,
   `hdurl` varchar(255) DEFAULT NULL,
   `media_type` varchar(50) DEFAULT NULL,
   `service_version` varchar(10) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
-  `copyright` varchar(255) DEFAULT NULL
+  `copyright` varchar(255) DEFAULT NULL,
+  `planete_nom` varchar(20) DEFAULT 'Sun'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -239,8 +243,7 @@ ALTER TABLE `MERCURY`
 -- Index pour la table `MOON`
 --
 ALTER TABLE `MOON`
-  ADD PRIMARY KEY (`date`),
-  ADD KEY `title` (`title`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `NEPTUNE`
@@ -258,8 +261,7 @@ ALTER TABLE `SATURN`
 -- Index pour la table `SUN`
 --
 ALTER TABLE `SUN`
-  ADD PRIMARY KEY (`date`),
-  ADD KEY `title` (`title`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `URANUS`
@@ -302,6 +304,12 @@ ALTER TABLE `MERCURY`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT pour la table `MOON`
+--
+ALTER TABLE `MOON`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `NEPTUNE`
 --
 ALTER TABLE `NEPTUNE`
@@ -311,6 +319,12 @@ ALTER TABLE `NEPTUNE`
 -- AUTO_INCREMENT pour la table `SATURN`
 --
 ALTER TABLE `SATURN`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `SUN`
+--
+ALTER TABLE `SUN`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

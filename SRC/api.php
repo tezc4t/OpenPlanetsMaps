@@ -13,15 +13,17 @@ try {
     $planetId = isset($_GET['planet']) ? $_GET['planet'] : '';
     
     $allowedTables = [
-        'mercury' => 'MERCURY',
-        'venus'   => 'VENUS',
-        'earth'   => 'EARTH',
-        'mars'    => 'MARS',
-        'jupiter' => 'JUPITER',
-        'saturn'  => 'SATURN',
-        'uranus'  => 'URANUS',
-        'neptune' => 'NEPTUNE'
-    ];
+    'mercury' => 'MERCURY',
+    'venus'   => 'VENUS',
+    'earth'   => 'EARTH',
+    'mars'    => 'MARS',
+    'jupiter' => 'JUPITER',
+    'saturn'  => 'SATURN',
+    'uranus'  => 'URANUS',
+    'neptune' => 'NEPTUNE',
+    'sun'     => 'SUN',    
+    'moon'    => 'MOON',   
+    ]; 
     
     if ($planetId === 'quiz') {
         $queries = [];
@@ -36,7 +38,7 @@ try {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         $questions = [];
-        $allPlanets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune'];
+        $allPlanets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune','Sun' , 'Moon'];
         
         foreach ($results as $row) {
             $correctEn = $row['planete_nom'];
