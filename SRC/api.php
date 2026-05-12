@@ -30,7 +30,8 @@ try {
         $queries = [];
         $seed = date('Ymd');
         foreach ($allowedTables as $key => $table) {
-            $queries[] = "(SELECT explanation, planete_nom, url FROM $table WHERE explanation IS NOT NULL AND explanation != '' ORDER BY RAND($seed) LIMIT 3)";
+            $planetName = ucfirst($key);
+            $queries[] = "(SELECT explanation, '$planetName' AS planete_nom, url FROM $table WHERE explanation IS NOT NULL AND explanation != '' ORDER BY RAND($seed) LIMIT 3)";
         }
         $unionQuery = implode(' UNION ALL ', $queries);
         
