@@ -26,7 +26,7 @@ $db_pass = 'admin123';
 $message = '';
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add') {
     try {
-        $pdo = new PDO("mysql:host=$host;port=3306;dbname=$dbname;charset=utf8", $db_user, $db_pass);
+        $pdo = new PDO("mysql:host=$host;port=3306;dbname=$dbname;charset=utf8;protocol=tcp", $db_user, $db_pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         $planete = $_POST['planete'];

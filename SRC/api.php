@@ -7,7 +7,7 @@ $username = 'root';
 $password = 'admin123';
 
 try {
-    $pdo = new PDO("mysql:host=$host;port=3306;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo = new PDO("mysql:host=$host;port=3306;dbname=$dbname;charset=utf8;protocol=tcp", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     $planetId = isset($_GET['planet']) ? $_GET['planet'] : '';
