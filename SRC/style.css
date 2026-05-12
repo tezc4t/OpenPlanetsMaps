@@ -547,10 +547,10 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
     #layer-Quiz .desc-box, #layer-Quiz .daily-challenge-box { display:none; }
 }
 @media (max-width:520px) {
-    #quiz-options { grid-template-columns:1fr; }
-    #quiz-container { padding:1.5rem 1rem; height:80vh; min-height:500px; justify-content:flex-start; overflow-y:auto; margin-bottom:1rem; }
-    #quiz-question { min-height:90px; font-size:.9rem; align-items:flex-start; margin-top:0; flex-grow:0; }
-    .quiz-btn { min-height:48px; font-size:.85rem; padding:.6rem 1rem; }
-    #quiz-img-preview.visible { max-height:220px; margin-bottom:1rem; }
-    #quiz-img-preview img, #quiz-img-preview video { max-height:150px; }
+    #quiz-options { grid-template-columns:1fr; gap:0.85rem; }
+    #quiz-container { padding:1.5rem; height:auto; min-height:auto; justify-content:center; overflow:visible; margin-bottom:2rem; }
+    #quiz-question { min-height:auto; font-size:.95rem; align-items:center; justify-content:center; text-align:center; margin-top:0; margin-bottom:1.5rem; }
+    .quiz-btn { min-height:50px; font-size:.85rem; padding:.75rem 1rem; justify-content:center; text-align:center; }
+    #quiz-img-preview.visible { max-height:none; margin-bottom:1.5rem; text-align:center; }
+    #quiz-img-preview img, #quiz-img-preview video { max-height:200px; width:auto; max-width:100%; margin:0 auto; }
 }
