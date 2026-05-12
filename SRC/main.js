@@ -352,4 +352,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('keydown', e => {
         if (e.key === 'Escape') closeCredits();
     });
+
+    const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        const iframes = document.querySelectorAll('iframe');
+        iframes.forEach(iframe => {
+            const fallback = document.createElement('div');
+            fallback.textContent = "fonctionnalité uniquement fonctionnelle sur pc";
+            fallback.style.display = "flex";
+            fallback.style.alignItems = "center";
+            fallback.style.justifyContent = "center";
+            fallback.style.minHeight = "200px";
+            fallback.style.backgroundColor = "#1e293b";
+            fallback.style.color = "#f87171";
+            fallback.style.border = "1px solid #334155";
+            fallback.style.borderRadius = "8px";
+            fallback.style.padding = "20px";
+            fallback.style.textAlign = "center";
+
+            iframe.parentNode.replaceChild(fallback, iframe);
+        });
+    }
 });
