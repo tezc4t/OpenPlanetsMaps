@@ -20,8 +20,8 @@ if (isset($_GET['logout'])) {
 
 $host = '172.17.0.1';
 $dbname = 'OpenPlanetsMaps';
-$db_user = 'admin';
-$db_pass = 'admin';
+$db_user = 'root';
+$db_pass = 'admin123';
 
 $message = '';
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add') {

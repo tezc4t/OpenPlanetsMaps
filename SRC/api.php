@@ -3,8 +3,8 @@ header('Content-Type: application/json');
 
 $host = '172.17.0.1';
 $dbname = 'OpenPlanetsMaps';
-$username = 'admin';
-$password = 'admin';
+$username = 'root';
+$password = 'admin123';
 
 try {
     $pdo = new PDO("mysql:host=$host;port=3306;dbname=$dbname;charset=utf8", $username, $password);
