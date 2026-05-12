@@ -151,25 +151,26 @@ async function fetchData(planetId) {
             let rowHtml = '';
             columns.forEach(col => {
                 const colLower = col.toLowerCase();
+                const colLabel = col.toUpperCase();
                 if (colLower.includes('url') || colLower === 'image' || colLower === 'img') {
                     const url = row[col];
                     if (url && url.trim() !== '') {
-                        rowHtml += `<td class="col-url">
+                        rowHtml += `<td class="col-url" data-label="${colLabel}">
                             <a href="${url}" target="_blank" rel="noopener noreferrer">
                                 ${url}
                             </a>
                         </td>`;
                     } else {
-                        rowHtml += `<td class="col-url">N/A</td>`;
+                        rowHtml += `<td class="col-url" data-label="${colLabel}">N/A</td>`;
                     }
                 } else if (colLower.includes('desc') || colLower.includes('expl')) {
                     const text = row[col] || '';
                     let fontSizeStyle = '';
                     if (text.length > 200)      fontSizeStyle = ' font-size: 0.75rem;';
                     else if (text.length > 100) fontSizeStyle = ' font-size: 0.85rem;';
-                    rowHtml += `<td class="col-desc" style="${fontSizeStyle}">${text}</td>`;
+                    rowHtml += `<td class="col-desc" style="${fontSizeStyle}" data-label="${colLabel}">${text}</td>`;
                 } else {
-                    rowHtml += `<td>${row[col]}</td>`;
+                    rowHtml += `<td data-label="${colLabel}">${row[col]}</td>`;
                 }
             });
 
@@ -178,6 +179,11 @@ async function fetchData(planetId) {
         });
 
         const tableContainer = tbody.closest('.table-container');
+        if (tableContainer) {
+            tableContainer.style.overflowX = 'auto';
+            tableContainer.style.maxWidth = '100%';
+            tableContainer.style.WebkitOverflowScrolling = 'touch';
+        }
         const existingBtn = tableContainer.querySelector('.show-more-btn');
         if (existingBtn) existingBtn.remove();
 
@@ -359,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const iframes = document.querySelectorAll('iframe');
         iframes.forEach(iframe => {
             const fallback = document.createElement('div');
-            fallback.textContent = "fonctionnalité uniquement fonctionnelle sur pc";
+            fallback.textContent = "functionality not available on mobile devices";
             fallback.style.display = "flex";
             fallback.style.alignItems = "center";
             fallback.style.justifyContent = "center";
