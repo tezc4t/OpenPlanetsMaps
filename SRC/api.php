@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
-$host = '172.17.0.1';
+$host = 'maps-db-unique';
 $dbname = 'OpenPlanetsMaps';
 $username = 'root';
 $password = 'admin123';

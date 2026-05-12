@@ -18,7 +18,7 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
-$host = '172.17.0.1';
+$host = 'maps-db-unique';
 $dbname = 'OpenPlanetsMaps';
 $db_user = 'root';
 $db_pass = 'admin123';
