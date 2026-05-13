@@ -1,42 +1,42 @@
 # OpenPlanetsMaps
 
 ## Description
-OpenPlanetsMaps est un projet regroupant et structurant des données astronomiques (images, vidéos, descriptions détaillées). Il répertorie des entrées fascinantes concernant notre système solaire, en classant ces informations par planètes et corps célestes, de manière similaire à l'API APOD (Astronomy Picture of the Day) de la NASA.
+OpenPlanetsMaps is a project that gathers and structures astronomical data (images, videos, detailed descriptions). It lists fascinating entries about our solar system, categorizing this information by planets and celestial bodies, similar to NASA's APOD (Astronomy Picture of the Day) API.
 
-## Contexte et Hébergement
-Ce projet a été réalisé dans le cadre d'un examen présidé par **F. LEFEVRE**.  
-Il est hébergé et accessible en ligne à l'adresse suivante : [opm.nhkyllian.fr](https://opm.nhkyllian.fr)
+## Context and Hosting
+This project was carried out as part of an exam presided over by **F. LEFEVRE**.  
+It is hosted and accessible online at the following address: [opm.nhkyllian.fr](https://opm.nhkyllian.fr)
 
-## Structure de la base de données
+## Database Structure
 
-Le cœur du projet repose sur une base de données MySQL/MariaDB nommée `OpenPlanetsMaps`. Elle contient des tables dédiées pour chaque astre majeur, permettant d'isoler et de structurer les données (`id`, `date`, `title`, `explanation`, `url`, `media_type`, etc.) :
+The core of the project relies on a MySQL/MariaDB database named `OpenPlanetsMaps`. It contains dedicated tables for each major celestial body, allowing data to be isolated and structured (`id`, `date`, `title`, `explanation`, `url`, `media_type`, etc.):
 
-- `EARTH` (Terre)
+- `EARTH`
 - `JUPITER`
 - `MARS`
-- `MERCURY` (Mercure)
-- `MOON` (Lune)
+- `MERCURY`
+- `MOON`
 - `NEPTUNE`
-- `SATURN` (Saturne)
-- `SUN` (Soleil)
+- `SATURN`
+- `SUN`
 - `URANUS`
 - `VENUS`
 
-Le système intègre également une table `CONTACT` destinée à stocker les messages et demandes issues d'un éventuel formulaire de contact (email, objet, demande, fichier joint).
+The system also includes a `CONTACT` table intended to store messages and requests from a potential contact form (email, subject, request, attached file).
 
-## Installation et Configuration
+## Installation and Configuration
 
-Pour mettre en place la base de données localement (par exemple, avec XAMPP, WAMP ou directement via MariaDB/MySQL) :
+To set up the database locally (for example, with XAMPP, WAMP, or directly via MariaDB/MySQL):
 
-1. Créez une nouvelle base de données appelée `OpenPlanetsMaps` (encodage recommandé : `utf8mb4_general_ci`).
-2. Importez le fichier de structure pour initialiser les tables :
+1. Create a new database named `OpenPlanetsMaps` (recommended encoding: `utf8mb4_general_ci`).
+2. Import the structure file to initialize the tables:
    ```bash
-   mysql -u utilisateur -p OpenPlanetsMaps < SRC/DATA/Structure.sql
+   mysql -u user -p OpenPlanetsMaps < SRC/DATA/Structure.sql
    ```
-3. Importez ensuite le fichier de données pour populer la base (contient actuellement les données de la Terre) :
+3. Then import the data file to populate the database (currently contains Earth data):
    ```bash
-   mysql -u utilisateur -p OpenPlanetsMaps < SRC/DATA/DATA.sql
+   mysql -u user -p OpenPlanetsMaps < SRC/DATA/DATA.sql
    ```
 
 ## Technologies
-- Base de données : MySQL / MariaDB (généré via phpMyAdmin)
+- Database: MySQL / MariaDB (generated via phpMyAdmin)
