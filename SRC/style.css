@@ -561,3 +561,18 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
     #quiz-img-preview.visible { max-height:none; margin-bottom:1rem; text-align:center; }
     #quiz-img-preview img, #quiz-img-preview video { max-height:160px; width:auto; max-width:100%; margin:0 auto; }
 }
+
+body.page-form { background-color: #0f172a; color: #e0e0e0; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 2rem; min-height: 100vh; overflow-x: auto; }
+.admin-box { background-color: #1e293b; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); width: 100%; max-width: 500px; border: 1px solid #334155; }
+.admin-box h1 { color: #00bfff; text-align: center; margin-bottom: 1.5rem; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; color: #b9bbbe; font-size: 0.9rem; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; background: #0f172a; border: 1px solid #334155; border-radius: 4px; color: white; font-family: inherit; }
+.btn-submit { width: 100%; padding: 0.75rem; background-color: #00bfff; color: white; border: none; border-radius: 4px; font-weight: 600; cursor: pointer; margin-top: 1rem; transition: background 0.2s; }
+.btn-submit:hover { background-color: #009acd; }
+.links { text-align: center; margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.links a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+.links a:hover { color: #ffffff; }
+input[type="file"] { cursor: pointer; padding: 0.6rem; }
+input[type="file"]::file-selector-button { background: #334155; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-right: 1rem; transition: background 0.2s; }
+input[type="file"]::file-selector-button:hover { background: #475569; }
