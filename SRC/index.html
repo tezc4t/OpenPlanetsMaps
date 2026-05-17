@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenPlanetsMaps</title>
+    <link rel="icon" href="IMG/IMP_Gen_logo-removebg-preview.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-home">
+    <div class="bg-animated"></div>
+
+    <header>
+        <div class="menu-icon" onclick="toggleSidebar()">☰</div>
+        <h1>Open Planets Maps</h1>
+        <div style="display: flex; gap: 10px;">
+            <button class="help-btn" onclick="window.location.href='contact.php'">Contact</button>
+            <button class="help-btn" onclick="window.location.href='admin.php'">Admin</button>
+        </div>
+    </header>
+
+    <nav id="sidebar" class="sidebar">
+        <ul>
+            <li onclick="showLayer('home')">Home</li>
+            <li class="menu-category">Planets</li>
+            <li onclick="showLayer('mercury')">Mercury</li>
+            <li onclick="showLayer('venus')">Venus</li>
+            <li onclick="showLayer('earth')">Earth</li>
+            <li onclick="showLayer('mars')">Mars</li>
+            <li onclick="showLayer('jupiter')">Jupiter</li>
+            <li onclick="showLayer('saturn')">Saturn</li>
+            <li onclick="showLayer('uranus')">Uranus</li>
+            <li onclick="showLayer('neptune')">Neptune</li>
+            <li class="menu-category">Celestial Bodies</li>
+            <li onclick="showLayer('sun')">Sun</li>    
+            <li onclick="showLayer('moon')">Moon</li>
+            <li class="menu-category">Activities</li>
+            <li onclick="showLayer('Quiz')">Quiz</li>
+        </ul>
+    </nav>
+
+    <main id="content-area">
+        <section id="layer-home" class="layer active">
+            <div class="main-img">
+                <iframe title="Solar System animation" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/b7c69a6b655b47c99f871d5ec5aee854/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="flex-row">
+                <div class="box">
+                    <h2>Space Exploration</h2>
+                    <p>Navigate through the solar system and discover the unique characteristics of each planet with our interactive maps.</p>
+                </div>
+                <div class="box">
+                    <h2>Open Data</h2>
+                    <p>Access a topographic database from space agencies, centralized in an open source tool.</p>
+                </div>
+            </div>
+            <div class="ticker-wrap">
+                <div class="ticker">Solar System - 8 Planets - Open Source Mapping - Topographic Data - Interactive Exploration...</div>
+            </div>
+            <div class="desc-box">Ready for launch? Open the side menu (☰) and select a destination to begin your journey.</div>
+        </section>
+
+        <section id="layer-mercury" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
+            <div class="main-img">
+                <iframe title="Mercury" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/0930a4f0405243f6a9f93a4da79c66b6/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Mercury is the closest planet to the Sun and the smallest in the solar system. Its surface is heavily cratered, resembling our Moon, and it experiences extreme temperature variations.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance from the Sun: 58 million km &nbsp;&bull;&nbsp; Temperature: -180°C to 430°C &nbsp;&bull;&nbsp; Surface area: 74.8 million km² &nbsp;&bull;&nbsp; Length of day: 59 Earth days</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-mercury">
+                        <tr><td colspan="3">Waiting for data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-venus" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
+            <div class="main-img">
+                <iframe title="Venus" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/d497ce25553447f3b7b679110c85cfa1/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Venus is the second planet in the solar system and the hottest. Its highly dense atmosphere causes an extreme greenhouse effect, and its surface is masked by thick clouds of sulfuric acid.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance from the Sun: 108 million km &nbsp;&bull;&nbsp; Average temperature: 462°C &nbsp;&bull;&nbsp; Surface area: 460 million km² &nbsp;&bull;&nbsp; Length of day: 243 Earth days</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-venus">
+                        <tr><td colspan="3">Waiting for data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-earth" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
+            <div class="main-img">
+                <iframe title="Earth : Planets / Solar System" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/cb636fdd7f124125a3b7d194da9942e1/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Our home planet, Earth, is the third planet in the solar system and the only one known to harbor life. It is distinguished by its vast oceans of liquid water that cover more than 70% of its surface.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance from the Sun: 150 million km (1 AU) &nbsp;&bull;&nbsp; Average temperature: 15°C &nbsp;&bull;&nbsp; Surface area: 510 million km² &nbsp;&bull;&nbsp; Natural satellites: 1 (The Moon)</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-earth">
+                        <tr><td colspan="3">Waiting for data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-mars" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
+            <div class="main-img">
+                <iframe title="Mars: InSight Lander and Volcanic Regions" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/50bb6eb0d1104d43bf684d2b0f70de1d/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Nicknamed the « Red Planet » due to the iron oxide on its surface, Mars has polar ice caps, the largest volcano in the solar system (Olympus Mons), and an immense canyon (Valles Marineris).</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance from the Sun: 227.9 million km &nbsp;&bull;&nbsp; Average temperature: -63°C &nbsp;&bull;&nbsp; Surface area: 144.8 million km² &nbsp;&bull;&nbsp; Gravity: 3.72 m/s²</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-mars">
+                        <tr><td colspan="3">Waiting for data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-jupiter" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
+            <div class="main-img">
+                <iframe title="jupiter" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/c5275eb96af245e4a8453837ac728a62/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Jupiter is the largest planet in our solar system. This gas giant is famous for its Great Red Spot, a gigantic anticyclonic storm, and possesses dozens of fascinating moons.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance from the Sun: 778 million km &nbsp;&bull;&nbsp; Average temperature: -110°C &nbsp;&bull;&nbsp; Surface area: 61.4 billion km² &nbsp;&bull;&nbsp; Natural satellites: 95 known</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-jupiter">
+                        <tr><td colspan="3">Waiting for data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-saturn" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
+            <div class="main-img">
+                <iframe title="Saturn" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/c09a1970148c43ad99db134a9d6d00b5/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Instantly recognizable by its spectacular system of rings composed of ice and rock particles, Saturn is a vast gas giant with extremely violent winds.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance from the Sun: 1.43 billion km &nbsp;&bull;&nbsp; Average temperature: -140°C &nbsp;&bull;&nbsp; Surface area: 42.7 billion km² &nbsp;&bull;&nbsp; Natural satellites: 146 known</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-saturn">
+                        <tr><td colspan="3">Waiting for data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-uranus" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
+            <div class="main-img">
+                <iframe title="Uranus" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/0009a69dbace44608c0bd09af9ba20db/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">Uranus is an ice giant whose axis of rotation is highly tilted, making it appear to « roll » along its orbit. Its beautiful cyan tint is due to the presence of methane.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance from the Sun: 2.87 billion km &nbsp;&bull;&nbsp; Average temperature: -195°C &nbsp;&bull;&nbsp; Surface area: 8.1 billion km² &nbsp;&bull;&nbsp; Length of year: 84 Earth years</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-uranus">
+                        <tr><td colspan="3">Waiting for data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-neptune" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
+            <div class="main-img">
+                <iframe title="Neptune" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/2a6f9ccc5c724a709912774caa197b77/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
+            </div>
+            <div class="desc-box">The farthest planet from the Sun is another ice giant, Neptune. It is known for its deep azure blue color and its supersonic winds, the fastest in the entire solar system.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance from the Sun: 4.5 billion km &nbsp;&bull;&nbsp; Average temperature: -200°C &nbsp;&bull;&nbsp; Surface area: 7.6 billion km² &nbsp;&bull;&nbsp; Wind speed: up to 2,100 km/h</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-neptune">
+                        <tr><td colspan="3">Waiting for data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-sun" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
+            <div class="main-img">
+                <div class="sketchfab-embed-wrapper">
+                    <iframe title="Photorealistic Sun" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/7556485516804d0db3960b834e4b3f98/embed"> </iframe>
+                    <p> <a href="https://sketchfab.com/3d-models/photorealistic-sun-7556485516804d0db3960b834e4b3f98?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=7556485516804d0db3960b834e4b3f98" target="_blank" rel="nofollow"> Photorealistic Sun </a> by <a href="https://sketchfab.com/cesar_salcedo?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=7556485516804d0db3960b834e4b3f98" target="_blank" rel="nofollow"> Cesar Salcedo CG </a> on <a href="https://sketchfab.com?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=7556485516804d0db3960b834e4b3f98" target="_blank" rel="nofollow">Sketchfab</a></p>
+                </div>
+            </div>
+            <div class="desc-box">The Sun is the star at the center of our solar system. It alone accounts for about 99.8% of the solar system's mass and provides the energy necessary to sustain life on Earth.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Type: Yellow dwarf &nbsp;&bull;&nbsp; Surface temperature: 5,500°C &nbsp;&bull;&nbsp; Distance to Earth: 150 million km (1 AU) &nbsp;&bull;&nbsp; Age: 4.6 billion years</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-sun">
+                        <tr><td colspan="3">Waiting for data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-moon" class="layer">
+            <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
+            <div class="main-img">
+                <div class="sketchfab-embed-wrapper">
+                    <iframe title="Moon" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/870de693475d436c8e925ab0bcda4ca4/embed"> </iframe>
+                    <p> <a href="https://sketchfab.com/3d-models/moon-870de693475d436c8e925ab0bcda4ca4?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=870de693475d436c8e925ab0bcda4ca4" target="_blank" rel="nofollow"> Moon </a> by <a href="https://sketchfab.com/miekeroth?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=870de693475d436c8e925ab0bcda4ca4" target="_blank" rel="nofollow"> Mieke Roth </a> on <a href="https://sketchfab.com?utm_medium=embed&amp;utm_campaign=share-popup&amp;utm_content=870de693475d436c8e925ab0bcda4ca4" target="_blank" rel="nofollow">Sketchfab</a></p>
+                </div>
+            </div>
+            <div class="desc-box">The Moon is Earth's only natural satellite. It is the fifth largest satellite in the solar system and the only non-terrestrial celestial body to have been visited by humans.</div>
+            <div class="ticker-wrap">
+                <div class="ticker">Distance to Earth: 384,400 km &nbsp;&bull;&nbsp; Temperature: -173°C to 127°C &nbsp;&bull;&nbsp; Gravity: 1.62 m/s² &nbsp;&bull;&nbsp; Orbit duration: 27.3 days</div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Image</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody-moon">
+                        <tr><td colspan="3">Waiting for data...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="layer-Quiz" class="layer">
+            <div class="desc-box">Test your knowledge of the solar system! Answer the questions below to see if you are a true space expert.</div>
+            
+            <div class="daily-challenge-box">
+                <strong class="daily-challenge-title">◈ DAILY CHALLENGE</strong>
+                <p class="daily-challenge-desc">Every day at midnight, the onboard computer compiles our archives to generate a new unique 10-question Quiz. Practice daily to perfect your knowledge!</p>
+            </div>
+
+            <div id="quiz-container" class="box">
+                <h2 id="quiz-question">Loading the Quiz...</h2>
+                <div id="quiz-options"></div>
+                <div id="quiz-img-preview">
+                    <div class="quiz-img-label">◈ SOURCE — MISSION IMAGE</div>
+                    <img src="" alt="" />
+                    <div class="quiz-img-caption"></div>
+                </div>
+                <p id="quiz-score"></p>
+                <button id="quiz-restart-btn" onclick="initQuiz()">Restart the Quiz</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" onclick="openCredits()" title="Credits & About">
+        &copy; 2026 OpenPlanetsMaps. Royalty-free. <span class="footer-credits-hint">— Credits ↗</span>
+    </footer>
+
+    <div id="credits-overlay"></div>
+    <div id="credits-panel">
+        <button class="credits-close" onclick="closeCredits()">✕</button>
+        <div class="credits-header">
+            <span class="credits-tag">◈ SYSTEM / ABOUT</span>
+            <h2 class="credits-title">OpenPlanetsMaps</h2>
+            <p class="credits-version">v1.0 — 2026</p>
+        </div>
+        <div class="credits-body">
+            <div class="credits-section">
+                <h3>Project</h3>
+                <p>OpenPlanetsMaps is an open source tool for interactive mapping of the solar system. Topographic data comes from the main global space agencies.</p>
+            </div>
+            <div class="credits-section">
+                <h3>Data & Sources</h3>
+                <ul>
+                    <li><span>NASA</span> — National Aeronautics and Space Administration</li>
+                    <li><span>ESA</span> — European Space Agency</li>
+                    <li><span>JAXA</span> — Japan Aerospace Exploration Agency</li>
+                    <li><span>USGS</span> — Astrogeology Science Center</li>
+                </ul>
+            </div>
+            <div class="credits-section">
+                <h3>3D Models</h3>
+                <ul>
+                    <li><span>Sketchfab</span> — Hosting & rendering of interactive models</li>
+                    <li>Models under Creative Commons licenses</li>
+                </ul>
+            </div>
+            <div class="credits-section">
+                <h3>Technologies</h3>
+                <ul>
+                    <li><span>HTML / CSS / JS</span> — Front-end</li>
+                    <li><span>PHP + MySQL</span> — Back-end & database</li>
+                    <li><span>Orbitron, Space Grotesk, Space Mono</span> — Google Fonts</li>
+                </ul>
+            </div>
+            <div class="credits-section">
+                <h3>License</h3>
+                <p>This project is freely distributed. Scientific data remains the property of their respective organizations.</p>
+            </div>
+        </div>
+        <div class="credits-footer">
+            <span>◈ OpenPlanetsMaps — Royalty-free — 2026</span>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
