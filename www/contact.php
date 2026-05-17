@@ -1,8 +1,10 @@
 <?php
+/* --- SESSION & INITIALIZATION --- */
 session_start();
 
 $message_status = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    /* --- FORM PROCESSING --- */
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $subject = htmlspecialchars($_POST['objet']);
     $message = htmlspecialchars($_POST['demande']);
@@ -11,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $file_path = null;
 
     if (isset($_FILES['televersement']) && $_FILES['televersement']['error'] == UPLOAD_ERR_OK) {
+        /* --- FILE UPLOAD --- */
         $file_tmp_name = $_FILES['televersement']['tmp_name'];
         $file_name = $_FILES['televersement']['name'];
         $file_size = $_FILES['televersement']['size'];
@@ -44,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     if (!$has_error) {
+        /* --- DATABASE INSERTION --- */
         try {
             $host = '172.22.0.3';
             $dbname = 'OpenPlanetsMaps';
@@ -67,11 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- --- HEAD --- -->
     <meta charset="UTF-8">
     <title>Contact - OpenPlanetsMaps</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="page-form">
+    <!-- --- BODY & FORM --- -->
     <div class="admin-box">
         <h1>Contact</h1>
         <?= $message_status ?>
