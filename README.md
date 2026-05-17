@@ -5,7 +5,8 @@ OpenPlanetsMaps is a project that gathers and structures astronomical data (imag
 
 ## Context and Hosting
 This project was carried out as part of an exam presided over by **F. LEFEVRE**.  
-It is hosted and accessible online at the following address: [opm.nhkyllian.fr](https://opm.nhkyllian.fr)
+It is hosted and accessible online at the following address: [opm.nhkyllian.fr](https://opm.nhkyllian.fr)  
+Secondary URL: [openplanetsmaps.alwaysdata.net](http://openplanetsmaps.alwaysdata.net)
 
 ## Database Structure
 
@@ -40,3 +41,8 @@ To set up the database locally (for example, with XAMPP, WAMP, or directly via M
 
 ## Technologies
 - Database: MySQL / MariaDB (generated via phpMyAdmin)
+
+## Releases (Mobile Apps)
+Native mobile applications for this project are now available. You can download them directly from the **Releases** tab of this GitHub repository:
+- 📱 **Android**: Download the `.apk` file to install the app on your Android device.
+- 🍏 **iOS**: Download the `.ipa` file to install the app on your iOS device.
