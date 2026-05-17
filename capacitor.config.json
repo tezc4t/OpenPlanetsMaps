@@ -1,5 +1,9 @@
 {
   "appId": "com.openplanetsmaps.app",
   "appName": "OpenPlanetsMaps",
-  "webDir": "SRC"
+  "webDir": "SRC",
+  "server": {
+    "url": "https://opm.nhkyllian.fr",
+    "cleartext": true
+  }
 }

@@ -361,19 +361,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const isElectron = navigator.userAgent.toLowerCase().includes('electron');
+    const isCapacitor = window.Capacitor !== undefined; // Détecte l'application mobile native
     
-    if (isMobile || isElectron) {
+    if (isMobile || isElectron || isCapacitor) {
         const iframes = document.querySelectorAll('iframe');
         iframes.forEach(iframe => {
             const fallback = document.createElement('div');
             if (isElectron) {
                 fallback.textContent = "3D models are not compatible on the desktop app";
+            } else if (isCapacitor) {
+                fallback.textContent = "3D models are not compatible on the mobile app";
             } else {
                 fallback.textContent = "functionality not available on mobile devices";
             }
             fallback.style.display = "flex";
             fallback.style.alignItems = "center";
             fallback.style.justifyContent = "center";
+            
+            // Correction du responsive : on empêche la boîte de déborder de l'écran
+            fallback.style.width = "100%";
+            fallback.style.maxWidth = "100%";
+            fallback.style.boxSizing = "border-box";
+            
             fallback.style.minHeight = "200px";
             fallback.style.backgroundColor = "#1e293b";
             fallback.style.color = "#f87171";
