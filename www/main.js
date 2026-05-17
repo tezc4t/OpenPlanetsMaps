@@ -1,3 +1,4 @@
+/* --- UI & NAVIGATION --- */
 function toggleSidebar() {
     document.getElementById('sidebar').classList.toggle('open');
 }
@@ -24,6 +25,7 @@ function showLayer(layerId) {
 const planetData = {};
 const planetCols = {};
 
+/* --- SEARCH & FILTERING --- */
 function wireSearch(planetId) {
     const layer = document.getElementById('layer-' + planetId);
     if (!layer) return;
@@ -98,6 +100,7 @@ function filterTable(planetId, query) {
     });
 }
 
+/* --- API & DATA FETCHING --- */
 async function fetchData(planetId) {
     const tbody = document.getElementById('tbody-' + planetId);
     if (!tbody) return;
@@ -212,6 +215,7 @@ let quizQuestions = [];
 let currentQuizIndex = 0;
 let quizScore = 0;
 
+/* --- QUIZ SYSTEM --- */
 async function initQuiz() {
     currentQuizIndex = 0;
     quizScore = 0;
@@ -339,6 +343,7 @@ function checkAnswer(selected, correct, btn) {
     }, 1800);
 }
 
+/* --- CREDITS MODAL --- */
 function openCredits() {
     document.getElementById('credits-panel').classList.add('open');
     document.getElementById('credits-overlay').classList.add('open');
@@ -351,6 +356,7 @@ function closeCredits() {
     document.body.style.overflow = '';
 }
 
+/* --- INITIALIZATION & MOBILE FALLBACK --- */
 document.addEventListener('DOMContentLoaded', () => {
     const overlay = document.getElementById('credits-overlay');
     if (overlay) overlay.addEventListener('click', closeCredits);
