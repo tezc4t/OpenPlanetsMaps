@@ -1,4 +1,5 @@
 <?php
+/* --- SESSION & AUTHENTICATION --- */
 session_start();
 
 $error = '';
@@ -18,12 +19,14 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
+/* --- DATABASE CONFIGURATION --- */
 $host = '172.22.0.3';
 $dbname = 'OpenPlanetsMaps';
 $db_user = 'root';
 $db_pass = 'admin123';
 
 $message = '';
+/* --- FORM PROCESSING & DB INSERTION --- */
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'add') {
     try {
         $options = [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", PDO::ATTR_EMULATE_PREPARES => false];
@@ -57,6 +60,7 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- --- HEAD & STYLES --- -->
     <meta charset="UTF-8">
     <title>Admin Panel - OpenPlanetsMaps</title>
     <link rel="stylesheet" href="style.css">
@@ -75,8 +79,10 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
     </style>
 </head>
 <body>
+    <!-- --- BODY & ADMIN PANEL --- -->
     <div class="admin-box">
         <?php if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true): ?>
+            <!-- --- LOGIN FORM --- -->
             <h1>Admin Login</h1>
             <?php if ($error): ?><p style="color: #f87171; text-align: center; margin-bottom: 1rem;"><?= $error ?></p><?php endif; ?>
             <form method="POST">
@@ -87,6 +93,7 @@ if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true
             </form>
             <div class="links"><a href="index.html">← Back to site</a></div>
         <?php else: ?>
+            <!-- --- ADD DATA FORM --- -->
             <h1>Add a row</h1>
             <?= $message ?>
             <form method="POST">
