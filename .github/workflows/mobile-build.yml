@@ -3,7 +3,8 @@ name: Build Mobile Apps (APK & IPA)
 on:
   push:
     branches:
-      - electron # Ou change pour la branche de ton choix
+      - "AppPhoneAPK&IPA"
+  workflow_dispatch:
 
 jobs:
   build-android:

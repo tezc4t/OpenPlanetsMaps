@@ -3,7 +3,8 @@ name: Build Electron App
 on:
   push:
     branches:
-      - electron # Déclenchement uniquement sur la branche electron
+      - "AppPhoneAPK&IPA"
+  workflow_dispatch:
 
 jobs:
   build:
