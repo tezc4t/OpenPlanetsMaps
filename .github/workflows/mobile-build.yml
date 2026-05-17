@@ -68,8 +68,7 @@ jobs:
       - name: Build iOS (Non signé)
         run: |
           cd ios/App
-          pod install
-          xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug -sdk iphoneos build CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGNING_IDENTITY="" SYMROOT=$GITHUB_WORKSPACE/ios/App/build
+          xcodebuild -project App.xcodeproj -scheme App -configuration Debug -sdk iphoneos build CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGNING_IDENTITY="" SYMROOT=$GITHUB_WORKSPACE/ios/App/build
           
           # Création forcée de l'IPA (Non signé)
           cd $GITHUB_WORKSPACE/ios/App/build/Debug-iphoneos
