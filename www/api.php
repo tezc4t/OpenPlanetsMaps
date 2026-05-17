@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 /* --- CONFIGURATION & SETUP --- */
-$config = require_once __DIR__ . '/config.php';
+$config = require_once 'config.php';
 $host = $config['host'];
 $dbname = $config['dbname'];
 $username = $config['username'];

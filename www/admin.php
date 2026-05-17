@@ -2,9 +2,11 @@
 /* --- SESSION & AUTHENTICATION --- */
 session_start();
 
+$config = require_once './config.php';
+
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'login') {
-    if ($_POST['username'] === 'admin' && $_POST['password'] === 'admin') {
+    if ($_POST['username'] === $config['admin_user'] && $_POST['password'] === $config['admin_pass']) {
         $_SESSION['admin_logged_in'] = true;
         header('Location: admin.php');
         exit;
@@ -20,10 +22,10 @@ if (isset($_GET['logout'])) {
 }
 
 /* --- DATABASE CONFIGURATION --- */
-$host = 'mysql-openplanetsmaps.alwaysdata.net';
-$dbname = 'openplanetsmaps_bdd';
-$db_user = 'openplanetsmaps_root';
-$db_pass = 'ka041006';
+$host = $config['host'];
+$dbname = $config['dbname'];
+$db_user = $config['username'];
+$db_pass = $config['password'];
 
 $message = '';
 /* --- FORM PROCESSING & DB INSERTION --- */
