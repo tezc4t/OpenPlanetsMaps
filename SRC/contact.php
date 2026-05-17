@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (!$has_error) {
         try {
-            $host = '172.22.0.4';
+            $host = 'maps-db-unique';
             $dbname = 'OpenPlanetsMaps';
             $db_user = 'root';
             $db_pass = 'admin123';
