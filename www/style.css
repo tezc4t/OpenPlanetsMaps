@@ -1,3 +1,4 @@
+/* --- FONTS & VARIABLES --- */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;600;700;900&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
@@ -21,6 +22,7 @@ body.theme-sun     { --theme-color:#ffcc44; --theme-glow:rgba(255,180,40,.55);  
 body.theme-moon    { --theme-color:#c8cfe8; --theme-glow:rgba(200,207,232,.35); --theme-subtle:rgba(200,207,232,.06); --bg-deep:#060608; --bg-mid:#0e0f14; --border:rgba(200,207,232,.12); --text-primary:#dde2f0; --text-secondary:#7e8ba8; --text-muted:#3c4258; }
 body.theme-Quiz    { --theme-color:#7eb8f7; --theme-glow:rgba(126,184,247,.35); --theme-subtle:rgba(126,184,247,.07); --bg-deep:#020510; --bg-mid:#060e24; --border:rgba(126,184,247,.13); --text-primary:#ddeeff; --text-secondary:#6a90b8; --text-muted:#2e4a6a; }
 
+/* --- GLOBAL STYLES --- */
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
 
 html, body { max-width:100vw; overflow-x:hidden; }
@@ -31,6 +33,7 @@ body {
     transition:background-color .8s ease, color .3s ease;
 }
 
+/* --- ANIMATED BACKGROUND --- */
 .bg-animated {
     position:fixed; inset:0; z-index:-2;
     background:radial-gradient(ellipse at 20% 10%, var(--bg-mid) 0%, var(--bg-deep) 60%);
@@ -93,6 +96,7 @@ body.theme-moon::before {
     100% { opacity:.65; }
 }
 
+/* --- HEADER --- */
 header {
     display:flex; justify-content:space-between; align-items:center;
     padding:0 2rem; height:64px;
@@ -131,6 +135,7 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
     box-shadow:0 0 12px var(--theme-glow);
 }
 
+/* --- SIDEBAR --- */
 .sidebar {
     position:fixed; top:0; left:-300px; width:280px; height:100vh;
     background:rgba(2,6,14,.96); backdrop-filter:blur(24px);
@@ -170,6 +175,7 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
 .sidebar li.menu-category::after { display:none; }
 .sidebar li.menu-category:hover { background:none; padding-left:1.75rem; text-shadow:none; color:var(--text-muted); }
 
+/* --- LAYOUT & MAIN CONTENT --- */
 #content-area {
     flex:1; padding:2.5rem; display:flex;
     max-width:1400px; margin:0 auto; width:100%;
@@ -180,6 +186,7 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
 }
 .layer.active { display:flex; }
 
+/* --- COMPONENTS (Images, Boxes, Tickers) --- */
 .main-img {
     margin-bottom:2.5rem; position:relative;
     border-radius:12px; overflow:hidden; border:1px solid var(--border);
@@ -259,6 +266,7 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
 }
 .ticker:hover { animation-play-state:paused; }
 
+/* --- SEARCH BAR --- */
 .search-bar { margin-bottom:2rem; position:relative; display:flex; justify-content:center; }
 .search-bar::before {
     content:'⌕'; position:absolute; left:calc(50% - 210px); top:50%;
@@ -279,6 +287,7 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
     box-shadow:0 0 20px var(--theme-glow);
 }
 
+/* --- DATA TABLES --- */
 .table-container { margin-bottom:3rem; }
 .data-table { width:100%; max-width:1300px; margin:0 auto; border-collapse:collapse; font-size:.88rem; }
 .data-table thead tr { background:rgba(255,255,255,.03); }
@@ -336,6 +345,7 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
 .show-more-btn:hover::before { transform:scaleX(1); }
 .show-more-btn:hover { box-shadow:0 0 24px var(--theme-glow); transform:translateY(1px); }
 
+/* --- FOOTER --- */
 .site-footer {
     text-align:center; padding:1.25rem 2rem;
     background:rgba(2,4,8,.7); backdrop-filter:blur(10px);
@@ -350,6 +360,7 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
 .footer-credits-hint { opacity:.5; font-style:italic; transition:opacity .2s; }
 .site-footer:hover .footer-credits-hint { opacity:1; color:var(--theme-color); }
 
+/* --- QUIZ SYSTEM --- */
 .daily-challenge-box {
     margin:0 auto 2rem; max-width:680px; padding:1rem 1.5rem;
     background:var(--theme-subtle); border:1px solid var(--border);
@@ -447,6 +458,7 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 
+/* --- CREDITS MODAL --- */
 #credits-overlay {
     position:fixed; inset:0; z-index:2000;
     background:rgba(0,0,0,.7); backdrop-filter:blur(6px);
@@ -510,11 +522,13 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
 
 .credits-footer { padding:1rem 2rem; border-top:1px solid var(--border); font-family:'Space Mono',monospace; font-size:.62rem; letter-spacing:.15em; color:var(--text-muted); flex-shrink:0; }
 
+/* --- SCROLLBAR & SELECTION --- */
 ::-webkit-scrollbar { width:6px; }
 ::-webkit-scrollbar-track { background:var(--bg-deep); }
 ::-webkit-scrollbar-thumb { background:var(--theme-color); border-radius:3px; }
 ::selection { background:var(--theme-glow); color:#fff; }
 
+/* --- KEYFRAMES --- */
 @keyframes layerReveal {
     from { opacity:0; transform:translateY(16px); filter:blur(4px); }
     to   { opacity:1; transform:translateY(0);    filter:blur(0); }
@@ -544,6 +558,8 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
     50%     { transform:translateX(5px); }
     75%     { transform:translateX(-3px); }
 }
+
+/* --- MEDIA QUERIES --- */
 @media (max-width:768px) {
     #layer-Quiz .desc-box, #layer-Quiz .daily-challenge-box { display:none; }
 }
@@ -562,6 +578,7 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
     #quiz-img-preview img, #quiz-img-preview video { max-height:160px; width:auto; max-width:100%; margin:0 auto; }
 }
 
+/* --- ADMIN & FORM PAGES --- */
 body.page-form { background-color: #0f172a; color: #e0e0e0; display: flex; flex-direction: row; justify-content: center; align-items: center; padding: 2rem; min-height: 100vh; overflow-x: auto; }
 .admin-box { background-color: #1e293b; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); width: 100%; max-width: 500px; border: 1px solid #334155; }
 .admin-box h1 { color: #00bfff; text-align: center; margin-bottom: 1.5rem; }
