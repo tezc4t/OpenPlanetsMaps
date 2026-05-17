@@ -363,6 +363,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const isElectron = navigator.userAgent.toLowerCase().includes('electron');
     const isCapacitor = window.Capacitor !== undefined; // Détecte l'application mobile native
     
+    if (isCapacitor) {
+        document.body.classList.add('is-mobile-app');
+    }
+    
     if (isMobile || isElectron || isCapacitor) {
         const iframes = document.querySelectorAll('iframe');
         iframes.forEach(iframe => {

@@ -93,13 +93,20 @@ body.theme-moon::before {
     100% { opacity:.65; }
 }
 
+#safe-area-block {
+    position: sticky; top: 0; z-index: 101;
+    width: 100%;
+    height: env(safe-area-inset-top);
+    background: var(--bg-deep);
+}
+
 header {
     display:flex; justify-content:space-between; align-items:center;
-    padding:env(safe-area-inset-top) 2rem 0;
-    height:calc(64px + env(safe-area-inset-top));
+    padding:0 2rem;
+    height:64px;
     background:rgba(2,4,8,.75); backdrop-filter:blur(20px);
     border-bottom:1px solid var(--border);
-    position:sticky; top:0; z-index:100;
+    position:sticky; top:env(safe-area-inset-top); z-index:100;
     transition:border-color .6s ease;
 }
 header::after {
@@ -137,10 +144,10 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
     background:rgba(2,6,14,.96); backdrop-filter:blur(24px);
     border-right:1px solid var(--border);
     transition:left .35s cubic-bezier(.4,0,.2,1), border-color .6s ease;
-    z-index:1000; padding-top:calc(5rem + env(safe-area-inset-top)); overflow-y:auto;
+    z-index:1000; padding-top:5rem; overflow-y:auto;
 }
 .sidebar::before {
-    content:'NAVIGATION'; position:absolute; top:calc(1.5rem + env(safe-area-inset-top)); left:1.5rem;
+    content:'NAVIGATION'; position:absolute; top:1.5rem; left:1.5rem;
     font-family:'Space Mono',monospace; font-size:.65rem; letter-spacing:.25em;
     color:var(--text-muted);
 }
@@ -472,7 +479,7 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
 #credits-panel.open { right:0; }
 
 .credits-close {
-    position:absolute; top:calc(1rem + env(safe-area-inset-top)); right:1rem;
+    position:absolute; top:1rem; right:1rem;
     background:transparent; border:1px solid var(--border); border-radius:6px;
     color:var(--text-muted); width:32px; height:32px; font-size:.8rem; cursor:pointer;
     display:flex; align-items:center; justify-content:center;
@@ -549,7 +556,7 @@ header h1:hover { animation:glitch .4s steps(1) forwards; }
     #layer-Quiz .desc-box, #layer-Quiz .daily-challenge-box { display:none; }
 }
 @media (max-width:520px) {
-    header { padding:env(safe-area-inset-top) 1rem 0; }
+    header { padding:0 1rem; }
     header h1 { font-size:.85rem; letter-spacing:.05em; text-align:center; }
     .menu-icon, .help-btn { padding:.4rem .6rem; font-size:.7rem; }
     #content-area { padding:1.5rem 1rem; }
@@ -577,3 +584,10 @@ body.page-form { background-color: #0f172a; color: #e0e0e0; display: flex; flex-
 input[type="file"] { cursor: pointer; padding: 0.6rem; }
 input[type="file"]::file-selector-button { background: #334155; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; margin-right: 1rem; transition: background 0.2s; }
 input[type="file"]::file-selector-button:hover { background: #475569; }
+
+/* Correction absolue pour App Mobile Native (Capacitor) */
+body.is-mobile-app #safe-area-block { height: max(env(safe-area-inset-top), 45px); }
+body.is-mobile-app header { top: max(env(safe-area-inset-top), 45px); }
+body.is-mobile-app .sidebar { padding-top: calc(5rem + max(env(safe-area-inset-top), 45px)); }
+body.is-mobile-app .sidebar::before { top: calc(1.5rem + max(env(safe-area-inset-top), 45px)); }
+body.is-mobile-app .credits-close { top: calc(1rem + max(env(safe-area-inset-top), 45px)); }
