@@ -11,6 +11,7 @@
 <body class="theme-home">
     <div class="bg-animated"></div>
 
+    <!-- HEADER -->
     <header>
         <div class="menu-icon" onclick="toggleSidebar()">☰</div>
         <h1>Open Planets Maps</h1>
@@ -20,6 +21,7 @@
         </div>
     </header>
 
+    <!-- SIDEBAR -->
     <nav id="sidebar" class="sidebar">
         <ul>
             <li onclick="showLayer('home')">Home</li>
@@ -40,7 +42,9 @@
         </ul>
     </nav>
 
+    <!-- MAIN CONTENT -->
     <main id="content-area">
+        <!-- HOME SECTION -->
         <section id="layer-home" class="layer active">
             <div class="main-img">
                 <iframe title="Solar System animation" frameborder="0" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/b7c69a6b655b47c99f871d5ec5aee854/embed?autostart=1&ui_infos=0&ui_watermark=0&ui_controls=0"></iframe>
@@ -61,6 +65,7 @@
             <div class="desc-box">Ready for launch? Open the side menu (☰) and select a destination to begin your journey.</div>
         </section>
 
+        <!-- MERCURY SECTION -->
         <section id="layer-mercury" class="layer">
             <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
             <div class="main-img">
@@ -86,6 +91,7 @@
             </div>
         </section>
 
+        <!-- VENUS SECTION -->
         <section id="layer-venus" class="layer">
             <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
             <div class="main-img">
@@ -111,6 +117,7 @@
             </div>
         </section>
 
+        <!-- EARTH SECTION -->
         <section id="layer-earth" class="layer">
             <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
             <div class="main-img">
@@ -136,6 +143,7 @@
             </div>
         </section>
 
+        <!-- MARS SECTION -->
         <section id="layer-mars" class="layer">
             <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
             <div class="main-img">
@@ -161,6 +169,7 @@
             </div>
         </section>
 
+        <!-- JUPITER SECTION -->
         <section id="layer-jupiter" class="layer">
             <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
             <div class="main-img">
@@ -186,6 +195,7 @@
             </div>
         </section>
 
+        <!-- SATURN SECTION -->
         <section id="layer-saturn" class="layer">
             <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
             <div class="main-img">
@@ -211,6 +221,7 @@
             </div>
         </section>
 
+        <!-- URANUS SECTION -->
         <section id="layer-uranus" class="layer">
             <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
             <div class="main-img">
@@ -236,6 +247,7 @@
             </div>
         </section>
 
+        <!-- NEPTUNE SECTION -->
         <section id="layer-neptune" class="layer">
             <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
             <div class="main-img">
@@ -261,6 +273,7 @@
             </div>
         </section>
 
+        <!-- SUN SECTION -->
         <section id="layer-sun" class="layer">
             <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
             <div class="main-img">
@@ -289,6 +302,7 @@
             </div>
         </section>
 
+        <!-- MOON SECTION -->
         <section id="layer-moon" class="layer">
             <div class="search-bar"><input type="text" placeholder="Multi-criteria search..."></div>
             <div class="main-img">
@@ -317,6 +331,7 @@
             </div>
         </section>
 
+        <!-- QUIZ SECTION -->
         <section id="layer-Quiz" class="layer">
             <div class="desc-box">Test your knowledge of the solar system! Answer the questions below to see if you are a true space expert.</div>
             
@@ -339,10 +354,12 @@
         </section>
     </main>
 
+    <!-- FOOTER -->
     <footer class="site-footer" onclick="openCredits()" title="Credits & About">
         &copy; 2026 OpenPlanetsMaps. Royalty-free. <span class="footer-credits-hint">— Credits ↗</span>
     </footer>
 
+    <!-- CREDITS MODAL -->
     <div id="credits-overlay"></div>
     <div id="credits-panel">
         <button class="credits-close" onclick="closeCredits()">✕</button>
@@ -390,6 +407,7 @@
         </div>
     </div>
 
+    <!-- SCRIPTS -->
     <script src="main.js"></script>
 </body>
 </html>
