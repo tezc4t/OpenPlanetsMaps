@@ -1,7 +1,10 @@
 <?php
 header('Content-Type: application/json');
 
-require_once __DIR__ . '/../config.php';
+$host = '172.22.0.3';
+$dbname = 'OpenPlanetsMaps';
+$username = 'root';
+$password = 'admin123';
 
 try {
     $options = [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", PDO::ATTR_EMULATE_PREPARES => false];
