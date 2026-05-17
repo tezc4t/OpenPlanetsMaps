@@ -45,6 +45,44 @@ jobs:
           name: OpenPlanetsMaps-Android-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
 
+  build-android-playstore:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Configuration de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Configuration de Java (Requis pour Android)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '21'
+
+      - name: Installation des dépendances
+        run: npm install
+
+      - name: Génération propre du dossier Android
+        run: |
+          rm -rf android
+          npx cap add android
+          npx cap sync android
+
+      - name: Build du Bundle Play Store (AAB)
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew bundleRelease
+
+      - name: Upload du Bundle Play Store (AAB)
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenPlanetsMaps-Android-PlayStore-AAB
+          path: android/app/build/outputs/bundle/release/*.aab
+
   build-ios:
     runs-on: macos-latest
     steps:
