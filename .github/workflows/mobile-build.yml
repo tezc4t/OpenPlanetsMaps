@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '21'
 
       - name: Installation des dépendances
         run: npm install
@@ -68,4 +68,17 @@ jobs:
       - name: Build iOS (Non signé)
         run: |
           cd ios/App
-          xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug -sdk iphoneos build CODE_SIGNING_ALLOWED=NO
+          pod install
+          xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug -sdk iphoneos build CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGNING_IDENTITY="" SYMROOT=$GITHUB_WORKSPACE/ios/App/build
+          
+          # Création forcée de l'IPA (Non signé)
+          cd $GITHUB_WORKSPACE/ios/App/build/Debug-iphoneos
+          mkdir -p Payload
+          cp -R App.app Payload/
+          zip -r $GITHUB_WORKSPACE/OpenPlanetsMaps-iOS-Unsigned.ipa Payload
+
+      - name: Upload de l'IPA (Non signé)
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenPlanetsMaps-iOS-IPA
+          path: OpenPlanetsMaps-iOS-Unsigned.ipa
