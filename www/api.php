@@ -1,6 +1,7 @@
 <?php
 header('Content-Type: application/json');
 
+/* --- CONFIGURATION & SETUP --- */
 $config = require_once __DIR__ . '/config.php';
 $host = $config['host'];
 $dbname = $config['dbname'];
@@ -8,10 +9,12 @@ $username = $config['username'];
 $password = $config['password'];
 
 try {
+    /* --- DATABASE CONNECTION --- */
     $options = [PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8", PDO::ATTR_EMULATE_PREPARES => false];
     $pdo = new PDO("mysql:host=$host;port=3306;dbname=$dbname;charset=utf8;protocol=tcp", $username, $password, $options);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
+    /* --- REQUEST HANDLING --- */
     $planetId = isset($_GET['planet']) ? $_GET['planet'] : '';
     
     $allowedTables = [
@@ -28,6 +31,7 @@ try {
     ]; 
     
     if ($planetId === 'quiz') {
+        /* --- QUIZ DATA GENERATION --- */
         $queries = [];
         $seed = date('Ymd');
         foreach ($allowedTables as $key => $table) {
@@ -66,6 +70,7 @@ try {
         exit;
     }
     
+    /* --- PLANET DATA FETCHING --- */
     if (!array_key_exists($planetId, $allowedTables)) {
         echo json_encode([]);
         exit;
@@ -78,6 +83,7 @@ try {
     $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($data);
 } catch (PDOException $e) {
+    /* --- ERROR HANDLING --- */
     http_response_code(500);
     echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
 }
