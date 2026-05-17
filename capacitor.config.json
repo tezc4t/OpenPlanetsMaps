@@ -5,5 +5,12 @@
   "server": {
     "url": "https://opm.nhkyllian.fr",
     "cleartext": true
+  },
+  "plugins": {
+    "StatusBar": {
+      "overlaysWebView": false,
+      "backgroundColor": "#020408",
+      "style": "DARK"
+    }
   }
 }
