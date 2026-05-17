@@ -27,11 +27,11 @@ jobs:
       - name: Installation des dépendances
         run: npm install
 
-      - name: Génération du dossier Android (si manquant)
-        run: npx cap add android || true
-
-      - name: Synchronisation Capacitor
-        run: npx cap sync android
+      - name: Génération propre du dossier Android
+        run: |
+          rm -rf android
+          npx cap add android
+          npx cap sync android
 
       - name: Build de l'APK Android
         run: |
@@ -59,11 +59,11 @@ jobs:
       - name: Installation des dépendances
         run: npm install
 
-      - name: Génération du dossier iOS (si manquant)
-        run: npx cap add ios || true
-
-      - name: Synchronisation Capacitor
-        run: npx cap sync ios
+      - name: Génération propre du dossier iOS
+        run: |
+          rm -rf ios
+          npx cap add ios
+          npx cap sync ios
 
       - name: Build iOS (Non signé)
         run: |
