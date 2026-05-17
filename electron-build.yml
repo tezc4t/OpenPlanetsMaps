@@ -1,0 +1,27 @@
+name: Build Electron App
+
+on:
+  push:
+    branches:
+      - electron # Déclenchement uniquement sur la branche electron
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Configuration de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Installation des dépendances
+        run: npm install
+
+      - name: Build de l'application (Windows)
+        run: npm run build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

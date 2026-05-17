@@ -1,0 +1,59 @@
+name: Build Mobile Apps (APK & IPA)
+
+on:
+  push:
+    branches:
+      - electron # Ou change pour la branche de ton choix
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Configuration de Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Configuration de Java (Requis pour Android)
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Installation des dépendances
+        run: npm install
+
+      - name: Synchronisation Capacitor
+        run: npx cap sync android
+
+      - name: Build de l'APK Android
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+
+      - name: Upload de l'APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenPlanetsMaps-Android-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+
+  build-ios:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Installation des dépendances
+        run: npm install
+
+      - name: Synchronisation Capacitor
+        run: npx cap sync ios
+
+      - name: Build iOS (Non signé)
+        run: |
+          cd ios/App
+          xcodebuild -workspace App.xcworkspace -scheme App -configuration Debug -sdk iphoneos build CODE_SIGNING_ALLOWED=NO

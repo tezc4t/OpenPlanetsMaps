@@ -360,12 +360,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isElectron = navigator.userAgent.toLowerCase().includes('electron');
     
-    if (isMobile) {
+    if (isMobile || isElectron) {
         const iframes = document.querySelectorAll('iframe');
         iframes.forEach(iframe => {
             const fallback = document.createElement('div');
-            fallback.textContent = "functionality not available on mobile devices";
+            if (isElectron) {
+                fallback.textContent = "3D models are not compatible on the desktop app";
+            } else {
+                fallback.textContent = "functionality not available on mobile devices";
+            }
             fallback.style.display = "flex";
             fallback.style.alignItems = "center";
             fallback.style.justifyContent = "center";

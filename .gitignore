@@ -1,0 +1,17 @@
+# Dépendances Node.js
+node_modules/
+npm-debug.log
+
+# Fichiers de compilation Electron
+dist/
+dist-electron/
+out/
+release/
+
+# Fichiers systèmes
+.DS_Store
+Thumbs.db
+
+# Fichiers d'environnement (si tu en as plus tard)
+.env
+.env.local
