@@ -28,6 +28,10 @@ The system also includes a `CONTACT` table intended to store messages and reques
 
 ## Technologies
 - Database: MySQL / MariaDB (generated via phpMyAdmin)
+- Frontend: HTML, CSS, JavaScript
+- Packaging: Electron Packager
+- CI/CD: GitHub Actions
+- Data format: JSON
 
 ## Releases (Mobile Apps)
 Native mobile applications for this project are now available. You can download them directly from the **Releases** tab of this GitHub repository:
