@@ -20,10 +20,10 @@ if (isset($_GET['logout'])) {
 }
 
 /* --- DATABASE CONFIGURATION --- */
-$host = '172.22.0.3';
-$dbname = 'OpenPlanetsMaps';
-$db_user = 'root';
-$db_pass = 'admin123';
+$host = 'mysql-openplanetsmaps.alwaysdata.net';
+$dbname = 'openplanetsmaps_bdd';
+$db_user = 'openplanetsmaps_root';
+$db_pass = 'ka041006';
 
 $message = '';
 /* --- FORM PROCESSING & DB INSERTION --- */
