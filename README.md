@@ -25,19 +25,6 @@ The core of the project relies on a MySQL/MariaDB database named `OpenPlanetsMap
 
 The system also includes a `CONTACT` table intended to store messages and requests from a potential contact form (email, subject, request, attached file).
 
-## Installation and Configuration
-
-To set up the database locally (for example, with XAMPP, WAMP, or directly via MariaDB/MySQL):
-
-1. Create a new database named `OpenPlanetsMaps` (recommended encoding: `utf8mb4_general_ci`).
-2. Import the structure file to initialize the tables:
-   ```bash
-   mysql -u user -p OpenPlanetsMaps < SRC/DATA/Structure.sql
-   ```
-3. Then import the data file to populate the database (currently contains Earth data):
-   ```bash
-   mysql -u user -p OpenPlanetsMaps < SRC/DATA/DATA.sql
-   ```
 
 ## Technologies
 - Database: MySQL / MariaDB (generated via phpMyAdmin)
@@ -46,3 +33,9 @@ To set up the database locally (for example, with XAMPP, WAMP, or directly via M
 Native mobile applications for this project are now available. You can download them directly from the **Releases** tab of this GitHub repository:
 - **Android**: Download the `.apk` file to install the app on your Android device.
 - **iOS**: Download the `.ipa` file to install the app on your iOS device.
+
+## Data Source & License
+The astronomical data (images, videos, and descriptions) provided in this project is sourced from the public NASA API. 
+As per NASA's media guidelines, these materials are in the **public domain** and are completely free to use without any royalties.
+
+The code and structure of this project are open-source and entirely free to use.
