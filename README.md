@@ -39,4 +39,4 @@ To set up the database locally (for example, with XAMPP, WAMP, or directly via M
    ```
 
 ## Technologies
-- Database: MySQL / MariaDB (generated via phpMyAdmin)
+- Database: MySQL / MariaDB (generated via phpMyAdmin).
