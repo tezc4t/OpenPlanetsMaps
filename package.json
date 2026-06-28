@@ -10,7 +10,8 @@
   "author": "Kyllian Auguste",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^29.0.0"
+    "electron": "^29.0.0",
+    "electron-builder": "^24.13.3"
   },
   "build": {
     "appId": "com.openplanetsmaps.app",
