@@ -19,8 +19,8 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Installation des dépendances
-        run: npm install
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build de l'application (Windows)
         run: npm run build

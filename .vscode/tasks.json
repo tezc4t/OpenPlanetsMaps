@@ -1,0 +1,40 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "3DS: Build CIA (Docker)",
+            "type": "shell",
+            "command": "docker run --rm -v \"${workspaceFolder}:/project\" -w /project/3ds devkitpro/devkitarm:latest bash -c 'source /etc/profile.d/devkit-env.sh && make cia'",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "detail": "Compile le projet 3DS en .cia en utilisant l'image Docker de devkitPro."
+        },
+        {
+            "label": "3DS: Clean Build (Docker)",
+            "type": "shell",
+            "command": "docker run --rm -v \"${workspaceFolder}:/project\" -w /project/3ds devkitpro/devkitarm:latest bash -c 'source /etc/profile.d/devkit-env.sh && make clean'",
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "detail": "Nettoie les fichiers de build du projet 3DS."
+        }
+    ]
+}

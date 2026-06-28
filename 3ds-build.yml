@@ -1,0 +1,37 @@
+name: Build 3DS App (CIA)
+
+on:
+  push:
+    branches:
+      - "AppPhoneAPK&IPA" # Déclenché sur la même branche que les autres builds
+    paths:
+      - '3ds/**'          # Uniquement si des fichiers dans 3ds/ sont modifiés
+      - 'SRC/**'          # Ou si les sources web sont modifiées
+  workflow_dispatch:
+
+jobs:
+  build-3ds:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkitarm:latest
+
+    steps:
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: Préparation des fichiers RomFS
+        run: |
+          echo "Copie des fichiers web vers le dossier romfs..."
+          mkdir -p 3ds/romfs
+          cp -r SRC/* 3ds/romfs/
+
+      - name: Compilation de l'application 3DS
+        working-directory: ./3ds
+        run: |
+          echo "Lancement du build 3DS via make..."
+          make cia
+
+      - name: Upload de l'artefact CIA
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenPlanetsMaps-3DS-CIA
+          path: 3ds/OpenPlanetsMaps.cia
