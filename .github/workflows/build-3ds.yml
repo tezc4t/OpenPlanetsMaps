@@ -1,0 +1,33 @@
+# .github/workflows/build-3ds.yml
+
+name: Build 3DS CIA
+
+on:
+  push:
+    branches: [ "main", "master" ] # Se déclenche sur un push vers main ou master
+  pull_request:
+    branches: [ "main", "master" ] # Se déclenche aussi sur les pull requests
+
+jobs:
+  build:
+    name: Build CIA
+    runs-on: ubuntu-latest # Utilise un runner Linux standard
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build with devkitPro Docker image
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}:/project \
+            -w /project/3ds \
+            devkitpro/devkitarm:latest \
+            bash -c "source /etc/profile.d/devkit-env.sh && make cia"
+
+      - name: Upload CIA as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OpenPlanetsMaps-CIA
+          path: 3ds/OpenPlanetsMaps.cia
+          if-no-files-found: error # Fait échouer le workflow si le CIA n'est pas trouvé
