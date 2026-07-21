@@ -6,7 +6,7 @@ OpenPlanetsMaps is a project that gathers and structures astronomical data (imag
 ## Context and Hosting
 This project was carried out as part of an exam presided over by **F. LEFEVRE**.  
 It is hosted and accessible online at the following address: [opm.nhkyllian.fr](https://opm.nhkyllian.fr)  
-Secondary URL: [openplanetsmaps.alwaysdata.net](http://openplanetsmaps.alwaysdata.net)
+
 
 ## Database Structure
 
